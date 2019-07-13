@@ -1,0 +1,15 @@
+.portalRoot {
+    height: 100%;
+    display: flex;
+}
+
+.leftSide {
+    flex: 0 10%;
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.rightSide {
+    flex: 1;
+    border: 1px solid #d8d8d8;
+}
