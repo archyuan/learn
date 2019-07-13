@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.JyyandEG.library.readerMapper.ReaderMapper" >
+
+    <resultMap id="readerWithnoPass" type="com.JyyandEG.library.entity.Reader">
+        <result property="readerid" column="readerid" />
+        <result property="readername" column="readername" />
+        <result  property="readersex"  column="readersex" />
+        <result  property="readerocuupation"  column="readerocuupation" />
+        <result  property="readertel"  column="readertel" />
+        <result  property="readeraddress" column="readeraddress" />
+    </resultMap>
+
+    <select id="getAllReader" resultMap="readerWithnoPass"  >
+      select readerid,readername,readersex,readerocuupation,readertel,readeraddress   from reader
+    </select>
+
+    <select id="getReaderById"  parameterType="Integer" resultType="com.JyyandEG.library.entity.ReaderWithinIdAndPass" >
+        select  readerid,readerpass  from reader where readerid=#{id}
+    </select>
+</mapper>
