@@ -7,7 +7,7 @@ const express = require('express');
 const app = express();
 const logger = log4js.getLogger();
 const config = require('../config/config.js');
-
+const session = require('express-session');
 const demoRouter = require('./routers/animalRouter');
 const demoAnimallAll = require('./routers/animallAllRouter');
 const readerRouter = require('./routers/reader');
@@ -38,6 +38,15 @@ app.use(function(req, res, next) {
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+app.use(session({
+    secret:'secret',
+    resave:true,
+    saveUninitialized:false,
+    cookie:{
+        maxAge:1000*60*3,
+    },
+}));
 
 // Express Gzip
 app.use('/assets', expressStaticGzip(path.resolve(__dirname + '/../build/assets'), {

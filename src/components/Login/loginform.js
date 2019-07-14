@@ -6,6 +6,9 @@ import Axios from 'axios';
 
 export default class NormalLoginForm extends Component {
 
+
+  pro
+
   handleSubmit = e => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
@@ -38,7 +41,7 @@ export default class NormalLoginForm extends Component {
   render() {
     const { getFieldDecorator } = this.props.form;
     return (  
-      <Form onSubmit={this.handleSubmit} className="login-form" className="loginform" >
+      <Form onSubmit={this.handleSubmit} className="login-form loginform"  >
         <Form.Item>
           {getFieldDecorator('username', {
             rules: [{ required: true, message: 'Please input your userid!' }, { pattern: new RegExp(/^[0-9]{1,}$/, "g"), message: 'UserId只包含数字' }],
