@@ -10,10 +10,10 @@ const { SubMenu } = Menu;
 
 const { Search } = Input;
 
-
+ booklist=[];
  export default class ReaderDetail extends Component {
 
-
+    
   UNSAFE_componentWillMount(){
     axios.defaults.withCredentials=true;
     axios.get('http://127.0.0.1:3005/reader/readerislogin').then((data)=>{
@@ -25,6 +25,16 @@ const { Search } = Input;
 }
 
 
+  search =(value)=>{
+    console.log(value);
+    axios.defaults.withCredentials = true;
+    axios.post('http://127.0.0.1:3005/book/search',{
+      bookname:value
+    }).then((data)=>{
+      console.log(data.data);
+      
+    });
+  }
 
 
     state = {
@@ -44,7 +54,7 @@ const { Search } = Input;
             <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
               <Menu.Item key="1">
               
-                <span><Search placeholder="搜索图书" onSearch={value => console.log(value)} 
+                <span><Search placeholder="搜索图书" onSearch={value => this.search(value)} 
                 style={{ width: 150 }} //#001529
                 className={serarch}
               />
@@ -83,7 +93,7 @@ const { Search } = Input;
                 <Breadcrumb.Item>Bill</Breadcrumb.Item>
               </Breadcrumb>
               <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
-                  {<BookListDetail />}
+                  {<BookListDetail  booklist={this.booklist} />}
               </div>
             </Content>
             <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>

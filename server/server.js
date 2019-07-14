@@ -11,6 +11,7 @@ const session = require('express-session');
 const demoRouter = require('./routers/animalRouter');
 const demoAnimallAll = require('./routers/animallAllRouter');
 const readerRouter = require('./routers/reader');
+const bookRouter = require('./routers/book');
 
 // Configure log4j
 log4js.configure({
@@ -69,7 +70,8 @@ app.use(express.static(path.join(__dirname, '/../build')));
 app.use('/animal', demoRouter);  // Express Middleware
 
 app.use('/ani',demoAnimallAll);
-app.use('/reader',readerRouter)
+app.use('/reader',readerRouter);
+app.use('/book',bookRouter);
 // Send resource
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '/../build', 'index.html'));
