@@ -22,9 +22,12 @@ export default  class Login extends Component{
         const Loginform = Form.create({ name: 'normal_login' })(NormalLoginForm);
 
         return(
-            <div className="divofloginform">
-           <Loginform />
+            <div className="divoflogin" >
+             <div className="divofloginform"   >
+           <Loginform  history={this.props.history} />
+             </div>
             </div>
+         
         );
     }
 

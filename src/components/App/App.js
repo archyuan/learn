@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import intl from 'react-intl-universal';
-import { Portal } from '..';
-import  Login from '../Login/login'
+import Userouter from '../router/Myrouter'
+
+
+
+
+
 
 // locale data
-const locales = {
+    const locales = {
     'en-US': require('../../locale/en-US.json'),
     'zh-CN': require('../../locale/zh-CN.json'),
 };
@@ -35,7 +39,7 @@ export default class App extends Component {
 
     render() {
         return (
-            this.state.initDone && (<Login />)
+            this.state.initDone && (<Userouter />)
         );
     }
 }
