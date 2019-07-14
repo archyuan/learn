@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Form, Icon, Input, Button, message } from 'antd';
 import './Login.scss'
-import Axios from 'axios';
+import axios from 'axios';
 
 
 export default class NormalLoginForm extends Component {
@@ -16,7 +16,8 @@ export default class NormalLoginForm extends Component {
         console.log('Received values of form: ', values);
         console.log(values.username);
         console.log(values.password);
-        Axios.post('http://127.0.0.1:3005/reader/login', {
+        axios.defaults.withCredentials = true;
+        axios.post('http://127.0.0.1:3005/reader/login', {
           userid: values.username,
           password: values.password
         }).then((data) => {

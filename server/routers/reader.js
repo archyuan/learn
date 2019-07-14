@@ -15,6 +15,7 @@ router.post('/login', (req, res) => {
 
         if (data.a == "success") {
             req.session.userid = userId;
+            req.session.save();
             
         }
        res.send(data);

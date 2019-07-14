@@ -3,14 +3,16 @@ import { BrowserRouter as Router, Route, Redirect, Switch, NavLink } from "react
 import StudentForm from '../../Containers/StudentForm/StudentForm';
 import StudentList from '../../Containers/StudentList/StudentList';
 import Style from './index.module.scss'
-import Axios from 'axios';
+import axios from 'axios';
 export default class Portal extends Component {
 
     UNSAFE_componentWillMount(){
-        Axios.get('http://127.0.0.1:3005/reader/readerislogin').then((data)=>{
-            if(data.data.b=="nologin"){
+        axios.defaults.withCredentials=true;
+        axios.get('http://127.0.0.1:3005/reader/readerislogin').then((data)=>{
+            if(data.data.b.match("nologin")){
                     this.props.history.replace({pathname:"/"});
             }
+            console.log(data.data.b);
         });
     }
   
