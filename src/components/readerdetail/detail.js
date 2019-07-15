@@ -55,6 +55,11 @@ export default class ReaderDetail extends Component {
     });
   }
 
+  logout =()=>{
+
+  }
+
+
   state = {
     collapsed: false,
   };
@@ -69,12 +74,12 @@ export default class ReaderDetail extends Component {
     let search;
     console.log(this.state.bookList)
     if (this.state.option == "1") {
-      com = <BookListDetail bookList={this.state.bookList} />
+      com = <BookListDetail bookList={this.state.bookList}  history={this.props.history} />
       search = <Search placeholder="搜索图书" onSearch={value => this.search(value)}
         style={{ width: 150 }} //#001529
         className={serarch}
       />
-    } else {
+    } else if(this.state.option == "2") {
       com = null;
       search = null;
     }
@@ -107,10 +112,6 @@ export default class ReaderDetail extends Component {
 
           <Content style={{ margin: '0 16px' }}>
 
-            <Breadcrumb style={{ margin: '16px 0' }}>
-              <Breadcrumb.Item>User</Breadcrumb.Item>
-              <Breadcrumb.Item>Bill</Breadcrumb.Item>
-            </Breadcrumb>
             <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
               {com}
             </div>

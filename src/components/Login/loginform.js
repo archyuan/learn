@@ -30,7 +30,7 @@ export default class NormalLoginForm extends Component {
            
           }else if(data.data.a.match('success')) {
             console.log('/ab');
-            this.props.history.push('/ab');
+            this.props.history.push('/reader/detail');
           }
 
         });

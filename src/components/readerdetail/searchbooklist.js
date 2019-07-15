@@ -11,7 +11,14 @@ export default class BookListDetail extends Component{
         };
     }
 
-
+    gotoBookDetail=(value)=>{
+     // console.log(value);
+     console.log(value);
+     // console.log("点击");
+      this.props.history.push({ "pathname":"/reader/bookdetail",
+          bookdetail:value
+    });
+    }
     // eslint-disable-next-line react/no-deprecated
     componentWillUpdate(){
         // this.setstate(
@@ -26,9 +33,9 @@ export default class BookListDetail extends Component{
         const columns = [
             {
               title: 'BookISBN',
-              dataIndex: 'bookisbn',
-              key: 'bookisbn',
-              render: text => <a href="javascript:;">{text}</a>,
+              dataIndex: 'bookid',
+              key: 'bookid',
+              render: (text,record) => (<a  onClick={this.gotoBookDetail.bind(this,record)} >{text}</a>)
             },
             {
               title: 'BookName',
