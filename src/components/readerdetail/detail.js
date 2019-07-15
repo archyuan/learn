@@ -10,9 +10,17 @@ const { SubMenu } = Menu;
 
 const { Search } = Input;
 
- booklist=[];
+
  export default class ReaderDetail extends Component {
 
+
+      constructor(props){
+        super(props);
+        this.state=({
+          booklist:[],
+          option:1
+        });
+      }
     
   UNSAFE_componentWillMount(){
     axios.defaults.withCredentials=true;
@@ -32,6 +40,10 @@ const { Search } = Input;
       bookname:value
     }).then((data)=>{
       console.log(data.data);
+      this.setState({
+        booklist:data.data,
+        option:1
+      });
       
     });
   }
@@ -47,6 +59,11 @@ const { Search } = Input;
     };
   
     render() {
+       let com;
+      if(this.state.option==1){
+        com=<BookListDetail booklist={this.state.booklist} />
+      }
+
       return (
         <Layout style={{ minHeight: '100vh' }}>
           <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
@@ -93,7 +110,7 @@ const { Search } = Input;
                 <Breadcrumb.Item>Bill</Breadcrumb.Item>
               </Breadcrumb>
               <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
-                  {<BookListDetail  booklist={this.booklist} />}
+                 {com}
               </div>
             </Content>
             <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
