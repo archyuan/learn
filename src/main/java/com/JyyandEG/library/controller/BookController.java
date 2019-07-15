@@ -25,4 +25,14 @@ public class BookController {
        System.out.println(books);
      return books;
     }
+
+    @PostMapping("/isable")
+    @ResponseBody
+    public JSONObject bookIsAble(@RequestBody JSONObject bookanduser ){
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("disable",false);
+        System.out.println(bookanduser);
+        return jsonObject;
+    }
+
 }

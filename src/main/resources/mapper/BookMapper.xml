@@ -4,7 +4,7 @@
 <mapper namespace="com.JyyandEG.library.bookmapper.BookMapper" >
 
     <select id="searchBookByName"  parameterType="java.lang.String" resultType="com.JyyandEG.library.entity.Book" >
-      select * from book where bookname like #{bookname}
+      select * from book where bookname like concat('%',#{bookname},'%')
     </select>
 
 </mapper>
