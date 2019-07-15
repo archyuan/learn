@@ -8,9 +8,10 @@ class BookInfo extends Component {
     constructor(props){
         super(props);
         this.state=({
-            able:false,
+            able:this.props.location.enable==undefined ? false:this.props.location.enable,
             bookdetail:this.props.location.bookdetail
         });
+     
     }
 
     componentDidMount(){

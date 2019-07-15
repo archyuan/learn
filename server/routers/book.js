@@ -17,4 +17,17 @@ router.post('/search', (req, res) => {
     })
 });
 
+router.post('/bookisable',(requets,response)=>{
+    if(requets.session.userid){
+         axios.post('http://127.0.0.1:8095/book/isable',{
+             userid:requets.session.userid,
+             bookid:requets.body.bookid
+         }).then((data)=>{
+            response.send(data.data);
+         })
+    }else{
+        response.send({"disable":true});
+    }
+});
+
 module.exports = router;

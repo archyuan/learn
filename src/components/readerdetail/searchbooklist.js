@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { Table, Divider, Tag } from 'antd';
+import axios from 'axios';
+
+
 export default class BookListDetail extends Component{
 
     constructor(props){
@@ -13,11 +16,23 @@ export default class BookListDetail extends Component{
 
     gotoBookDetail=(value)=>{
      // console.log(value);
+     let enable = false;
      console.log(value);
+     axios.defaults.withCredentials = true;
+      axios.post('http://127.0.0.1:3005/book/bookisable',{
+        bookid:value.bookid
+      }).then((data)=>{
+        ///下一个按钮的可用状态信息
+        console.log(data.data);
+      });
+
+      console.log(value.bookid);
+
      // console.log("点击");
-      this.props.history.push({ "pathname":"/reader/bookdetail",
-          bookdetail:value
-    });
+      /*this.props.history.push({ "pathname":"/reader/bookdetail",
+          bookdetail:value,
+          enable:enable
+    });*/     //测试保留不要删，测试成功后使用
     }
     // eslint-disable-next-line react/no-deprecated
     componentWillUpdate(){

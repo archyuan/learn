@@ -21,7 +21,7 @@ export default class Userouter extends Component{
                  <Route  exact path="/" component={Login}   /> 
                  <Route  path="/ab" component={Portal} />
                  <Route exact path="/reader/detail"  component={ReaderDetail}  />
-                 <Route  exact path="/reader/bookdetail"  component={BookInfo} />
+                 <Route  exact path="/reader/bookdetail"  component={BookInfo   } />
                 </Switch>
             </Router>
            
