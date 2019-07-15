@@ -14,14 +14,15 @@ export default class BookListDetail extends Component{
 
     // eslint-disable-next-line react/no-deprecated
     componentWillUpdate(){
-        this.setstate(
-          {
-            data:this.props.serarchbooklist
-          }
-        );
+        // this.setstate(
+        //   {
+        //     data:this.props.serarchbooklist
+        //   }
+        // );
     }
 
     render(){
+      console.log(this.props.bookList)
         const columns = [
             {
               title: 'BookISBN',
@@ -68,7 +69,7 @@ export default class BookListDetail extends Component{
             }
           ];
         return(
-            <Table columns={columns} dataSource={this.state.data}  />
+            <Table columns={columns} dataSource={this.props.bookList}  />
         );
     }
 
