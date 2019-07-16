@@ -32,7 +32,7 @@ public class RederController {
     public JSONObject CheckLogin(@RequestBody JSONObject jsonObject) {
 
         JSONObject js = new JSONObject();
-        ;
+
         if (jsonObject != null) {
             System.out.println(jsonObject);
             String readerid = jsonObject.getString("userid");
@@ -54,8 +54,14 @@ public class RederController {
 
     @PostMapping("/readercord")
     @ResponseBody
-    public List<BookStateWithReader> ReaderCordBook(){
-        return readerService.getReaderCordByReaderId("101000");
+    public List<BookStateWithReader> ReaderCordBook(@RequestBody  JSONObject jsonObject){
+        System.out.println(jsonObject);
+        List<BookStateWithReader> bookStateWithReaders=null;
+        if (jsonObject.getString("userid").equals("0"))
+            return bookStateWithReaders;
+        bookStateWithReaders= readerService.getReaderCordByReaderId("101000");
+        System.out.println(bookStateWithReaders);
+        return bookStateWithReaders;
     }
 
 

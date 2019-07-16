@@ -26,7 +26,7 @@ public class BookService {
          Integer state = bookMapper.getBookStateByRIAndBI(biAndRI);
          System.out.println("state "+state);
          if(state!=null){
-             if (state== BookState.isReturned) {
+             if (state== BookState.isReturned || state == BookState.isRefused) {
                   synchronized (sy){
                        number = bookMapper.getBookNumberByBookId(biAndRI.getBookid());
                   }

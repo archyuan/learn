@@ -24,7 +24,9 @@ public class BookAndReaderUtil {
         } else if (state == BookState.isBorrowed) {
             states.add("已借阅");
         }else if(state == BookState.isRefused){
-            states.add("拒绝申请");
+            states.add("申请已拒绝");
+        }else {
+            states.add("未知状态");
         }
         return states;
 
