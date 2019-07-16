@@ -1,11 +1,11 @@
 package com.JyyandEG.library.service;
 
 
+import com.JyyandEG.library.Const.BookState;
+import com.JyyandEG.library.Const.InsertState;
 import com.JyyandEG.library.Util.BookAndReaderUtil;
-import com.JyyandEG.library.entity.BookStateWithReader;
-import com.JyyandEG.library.entity.BookStateWithReaderId;
-import com.JyyandEG.library.entity.Reader;
-import com.JyyandEG.library.entity.ReaderWithinIdAndPass;
+import com.JyyandEG.library.bookmapper.BookMapper;
+import com.JyyandEG.library.entity.*;
 import com.JyyandEG.library.readerMapper.ReaderMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +18,28 @@ public class ReaderService {
     @Autowired
     ReaderMapper readerMapper;
 
+    @Autowired
+    BookMapper bookMapper;
+
+    private Byte[] lc = new Byte[0]; //查询锁
+    private Byte[] lcc = new Byte[0]; //插入锁
+
+
+    private int havaEnoughBookNumber(BIAndRIWithBookState biAndRIWithBookState) {
+        int number = 0;
+        synchronized (lc) {
+            number = bookMapper.getBookNumberByBookId(biAndRIWithBookState.getBookid());
+        }
+        return number;
+    }
+
+    private  Integer checkBookIsReturn(BIAndRIWithBookState biAndRIWithBookState){
+        BIAndRI biAndRI = new BIAndRI();
+        biAndRI.setBookid(biAndRIWithBookState.getBookid());
+        biAndRI.setReaderid(biAndRIWithBookState.getReaderid());
+       Integer state= bookMapper.getBookStateByRIAndBI(biAndRI);
+         return state;
+    }
 
     public List<Reader> getAllReader() {
         return readerMapper.getAllReader();
@@ -41,4 +63,28 @@ public class ReaderService {
         return BookAndReaderUtil.BsWRiToBsWR(readerMapper.getReaderCordByReaderId(readerid));
     }
 
+    public String applyABook(BIAndRIWithBookState biAndRIWithBookState) {
+
+       Integer state= checkBookIsReturn(biAndRIWithBookState);
+        if (state!=null&&(state==BookState.isBorrowed||state==BookState.isApplying)){
+
+
+           return  "isBorrowedOrApllying";
+        }
+        if (havaEnoughBookNumber(biAndRIWithBookState) > 0) {
+            int isInsert = 0;
+            synchronized (lcc) {
+                isInsert = readerMapper.applyABook(biAndRIWithBookState);
+            }
+            if (isInsert > 0) {
+                return InsertState.success;
+            } else {
+                return InsertState.fail;
+            }
+
+        } else {
+            return InsertState.fail;
+        }
+
+    }
 }

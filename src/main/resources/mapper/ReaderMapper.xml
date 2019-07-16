@@ -24,4 +24,7 @@
         select bookstatewithreader.bookid,bookstatewithreader.borrowbooktime,bookstatewithreader.returnbooktime,bookstatewithreader.bookstate,book.bookname,book.bookauthor,book.bookpublish
         ,book.booktag from bookstatewithreader,book where book.bookid=bookstatewithreader.bookid and bookstatewithreader.readerid=#{readerid}
     </select>
+    <insert id="applyABook" parameterType="com.JyyandEG.library.entity.BIAndRIWithBookState"  >
+        insert into bookstatewithreader(bookid,readerid,bookstate) values(#{bookid},#{readerid},#{bookstate})
+    </insert>
 </mapper>

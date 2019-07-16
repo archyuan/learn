@@ -22,25 +22,24 @@ public class BookService {
     }
 
     public boolean getBookStateByBIRI(BIAndRI biAndRI) {
-        Integer number=null;
-         Integer state = bookMapper.getBookStateByRIAndBI(biAndRI);
-         System.out.println("state "+state);
-         if(state!=null){
-             if (state== BookState.isReturned || state == BookState.isRefused) {
-                  synchronized (sy){
-                       number = bookMapper.getBookNumberByBookId(biAndRI.getBookid());
-                  }
-                  if(number==null)
-                      return false;
-                  if (number>0)
-                      return true;
-                 return false;
-             }
-             else {
-                 return false;
-             }
-         }else {
-             return true;
-         }
+        Integer number = null;
+        Integer state = bookMapper.getBookStateByRIAndBI(biAndRI);
+        System.out.println("state " + state);
+        if (state != null) {
+            if (state == BookState.isReturned || state == BookState.isRefused) {
+                synchronized (sy) {
+                    number = bookMapper.getBookNumberByBookId(biAndRI.getBookid());
+                }
+                if (number == null)
+                    return false;
+                if (number > 0)
+                    return true;
+                return false;
+            } else {
+                return false;
+            }
+        } else {
+            return true;
+        }
     }
 }
