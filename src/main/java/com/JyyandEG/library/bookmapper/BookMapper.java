@@ -17,4 +17,6 @@ public interface BookMapper {
 
     Integer getBookNumberByBookId(String bookid);
 
+    List<Integer> getBookStatesByRIAndBI(BIAndRI biAndRI);
+
 }

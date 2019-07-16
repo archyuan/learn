@@ -23,13 +23,14 @@ public class BookService {
 
     public boolean getBookStateByBIRI(BIAndRI biAndRI) {
         Integer number = null;
-        Integer state = bookMapper.getBookStateByRIAndBI(biAndRI);
-        System.out.println("state " + state);
-        if (state != null) {
-            if (state == BookState.isReturned || state == BookState.isRefused) {
-                synchronized (sy) {
-                    number = bookMapper.getBookNumberByBookId(biAndRI.getBookid());
-                }
+        List<Integer> states = bookMapper.getBookStatesByRIAndBI(biAndRI);
+        System.out.println("state " + states);
+        synchronized (sy) {
+            number = bookMapper.getBookNumberByBookId(biAndRI.getBookid());
+        }
+        if (states != null&&states.size()==1) {
+            if (states.get(0) == BookState.isReturned || states.get(0) == BookState.isRefused) {
+
                 if (number == null)
                     return false;
                 if (number > 0)
@@ -38,8 +39,13 @@ public class BookService {
             } else {
                 return false;
             }
-        } else {
+        } else if (states==null){
+            return true;
+        }else if(states.size()>1){
+            if(states.contains(BookState.isApplying)||states.contains(BookState.isBorrowed))
+                return false;
             return true;
         }
+        return true;
     }
 }

@@ -15,6 +15,9 @@
         select booknumber from book where bookid=#{bookid}
     </select>
 
+    <select id="getBookStatesByRIAndBI"  parameterType="com.JyyandEG.library.entity.BIAndRI" resultType="Integer" >
+         select bookstate  from bookstatewithreader where bookid=#{bookid} and readerid=#{readerid}
+    </select>
 
 
 </mapper>

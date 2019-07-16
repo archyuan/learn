@@ -33,12 +33,12 @@ public class ReaderService {
         return number;
     }
 
-    private  Integer checkBookIsReturn(BIAndRIWithBookState biAndRIWithBookState){
+    private  List<Integer> checkBookIsReturn(BIAndRIWithBookState biAndRIWithBookState){
         BIAndRI biAndRI = new BIAndRI();
         biAndRI.setBookid(biAndRIWithBookState.getBookid());
         biAndRI.setReaderid(biAndRIWithBookState.getReaderid());
-       Integer state= bookMapper.getBookStateByRIAndBI(biAndRI);
-         return state;
+       List<Integer> states= bookMapper.getBookStatesByRIAndBI(biAndRI);
+         return states;
     }
 
     public List<Reader> getAllReader() {
@@ -65,8 +65,8 @@ public class ReaderService {
 
     public String applyABook(BIAndRIWithBookState biAndRIWithBookState) {
 
-       Integer state= checkBookIsReturn(biAndRIWithBookState);
-        if (state!=null&&(state==BookState.isBorrowed||state==BookState.isApplying)){
+       List<Integer> states= checkBookIsReturn(biAndRIWithBookState);
+        if (states!=null&&(states.contains(BookState.isBorrowed)||states.contains(BookState.isApplying))){
 
 
            return  "isBorrowedOrApllying";
