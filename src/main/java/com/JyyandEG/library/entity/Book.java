@@ -88,7 +88,7 @@ public class Book {
 
     @Override
     public String toString() {
-        return "{key:"+key+",bookid:"+bookid+",bookname:"+bookname+",bookauthor:"+bookauthor+",bookpublish:"+bookpublish
-                +",putdate:"+putdate+",booknumber:"+booknumber+",booktag:"+booktag+",bookcontent:"+bookcontent+"}";
+        return "{key:" + key + ",bookid:" + bookid + ",bookname:" + bookname + ",bookauthor:" + bookauthor + ",bookpublish:" + bookpublish
+                + ",putdate:" + putdate + ",booknumber:" + booknumber + ",booktag:" + booktag + ",bookcontent:" + bookcontent + "}";
     }
 }

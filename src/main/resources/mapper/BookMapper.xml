@@ -7,4 +7,12 @@
       select * from book where bookname like concat('%',#{bookname},'%')
     </select>
 
+    <select id="getBookStateByRIAndBI" parameterType="com.JyyandEG.library.entity.BIAndRI" resultType="Integer" >
+       select bookstate  from bookstatewithreader where bookid=#{bookid} and readerid=#{readerid}
+    </select>
+
+    <select id="getBookNumberByBookId" parameterType="java.lang.String" resultType="Integer" >
+        select booknumber from book where bookid=#{bookid}
+    </select>
+
 </mapper>
