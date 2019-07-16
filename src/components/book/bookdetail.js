@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Descriptions } from 'antd';
-import { Button } from 'antd';
+import { Button,message } from 'antd';
 import './bookdetail.css'
 class BookInfo extends Component {
 
     constructor(props){
         super(props);
         this.state=({
-            able:this.props.location.enable==undefined ? false:this.props.location.enable,
+            
             bookdetail:this.props.location.bookdetail
+            
         });
      
     }
@@ -17,6 +18,7 @@ class BookInfo extends Component {
     componentDidMount(){
         console.log("DidMount");
         console.log(this.state.bookdetail);
+      
        
     }
 
@@ -43,10 +45,17 @@ class BookInfo extends Component {
             if(this.state.bookdetail==undefined){
                 this.props.history.replace({ pathname: "/" });
             }
+            if(this.state.bookdetail.en==true){
+                message.info(当前您不可借书);
+            }
+            alert(this.state.bookdetail.en);
+           
             console.log("书籍详情");
     }
 
     render() {
+     
+     
         return (
             <div>
                 <Descriptions title="图书信息" bordered>
@@ -60,11 +69,12 @@ class BookInfo extends Component {
                     <Descriptions.Item label="简介" span={3}>{ this.state.bookdetail==undefined ||  this.state.bookdetail.bookcontent }</Descriptions.Item>
                 </Descriptions>
                 <div className='buttondiv' >
-                <Button type="primary" block  disabled={this.state.able} onClick={this.feedbackBookState} >
-                    申请借书
-                </Button>
+                 {  this.state.bookdetail==undefined ||  <Button   onClick={this.feedbackBookState} >申请借阅</Button> }
+                
                 </div>
+             
             </div>
+               
         );
     }
 }
