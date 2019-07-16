@@ -1,5 +1,7 @@
 package com.JyyandEG.library.controller;
 
+import com.JyyandEG.library.entity.BookStateWithReader;
+import com.JyyandEG.library.entity.BookStateWithReaderId;
 import com.JyyandEG.library.entity.Reader;
 import com.JyyandEG.library.service.ReaderService;
 
@@ -47,6 +49,13 @@ public class RederController {
 
         return js;
 
+    }
+
+
+    @PostMapping("/readercord")
+    @ResponseBody
+    public List<BookStateWithReader> ReaderCordBook(){
+        return readerService.getReaderCordByReaderId("101000");
     }
 
 

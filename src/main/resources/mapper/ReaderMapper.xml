@@ -19,4 +19,9 @@
     <select id="getReaderById"  parameterType="Integer" resultType="com.JyyandEG.library.entity.ReaderWithinIdAndPass" >
         select  readerid,readerpass  from reader where readerid=#{id}
     </select>
+
+    <select id="getReaderCordByReaderId" parameterType="java.lang.String"  resultType="com.JyyandEG.library.entity.BookStateWithReaderId" >
+        select bookstatewithreader.bookid,bookstatewithreader.borrowbooktime,bookstatewithreader.returnbooktime,bookstatewithreader.bookstate,book.bookname,book.bookauthor,book.bookpublish
+        ,book.booktag from bookstatewithreader,book where book.bookid=bookstatewithreader.bookid and bookstatewithreader.readerid=#{readerid}
+    </select>
 </mapper>

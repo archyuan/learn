@@ -9,7 +9,7 @@ spring:
       prefix: classpath:/templates/
   datasource:
     username: root
-    password: 126242
+    password: 123456789
     url: jdbc:mysql://localhost:3306/library?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC&useSSL=false
     driver-class-name: com.mysql.jdbc.Driver
 mybatis:

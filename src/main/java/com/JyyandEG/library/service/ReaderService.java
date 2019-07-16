@@ -1,6 +1,9 @@
 package com.JyyandEG.library.service;
 
 
+import com.JyyandEG.library.Util.BookAndReaderUtil;
+import com.JyyandEG.library.entity.BookStateWithReader;
+import com.JyyandEG.library.entity.BookStateWithReaderId;
 import com.JyyandEG.library.entity.Reader;
 import com.JyyandEG.library.entity.ReaderWithinIdAndPass;
 import com.JyyandEG.library.readerMapper.ReaderMapper;
@@ -14,6 +17,7 @@ public class ReaderService {
 
     @Autowired
     ReaderMapper readerMapper;
+
 
     public List<Reader> getAllReader() {
         return readerMapper.getAllReader();
@@ -31,6 +35,10 @@ public class ReaderService {
             return pass.equals(readerWithinIdAndPass.getReaderpass());
         }
 
+    }
+
+    public List<BookStateWithReader> getReaderCordByReaderId(String readerid) {
+        return BookAndReaderUtil.BsWRiToBsWR(readerMapper.getReaderCordByReaderId(readerid));
     }
 
 }

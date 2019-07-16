@@ -1,5 +1,6 @@
 package com.JyyandEG.library.readerMapper;
 
+import com.JyyandEG.library.entity.BookStateWithReaderId;
 import com.JyyandEG.library.entity.Reader;
 import com.JyyandEG.library.entity.ReaderWithinIdAndPass;
 import org.apache.ibatis.annotations.Mapper;
@@ -13,5 +14,7 @@ public interface ReaderMapper {
     List<Reader> getAllReader();
 
     ReaderWithinIdAndPass getReaderById(int id);
+
+    List<BookStateWithReaderId> getReaderCordByReaderId(String readerid);
 
 }
