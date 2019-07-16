@@ -91,32 +91,28 @@ class BookInfo extends Component {
     render() {
 
 
-        return ( <
-            div >
-            <
-            Descriptions title = "图书信息"
-            bordered >
-            <
-            Descriptions.Item label = "ISDN" > { this.state.bookdetail == undefined || this.state.bookdetail.bookid } < /Descriptions.Item> <
-            Descriptions.Item label = "作者" > { this.state.bookdetail == undefined || this.state.bookdetail.bookauthor } < /Descriptions.Item> <
-            Descriptions.Item label = "出版社" > { this.state.bookdetail == undefined || this.state.bookdetail.bookpublish } < /Descriptions.Item> <
-            Descriptions.Item label = "入库时间" > { this.state.bookdetail == undefined || this.state.bookdetail.putdate } < /Descriptions.Item> <
-            Descriptions.Item label = "库存" > { this.state.bookdetail == undefined || this.state.bookdetail.booknumber } < /Descriptions.Item> <
-            Descriptions.Item label = "书名" > { this.state.bookdetail == undefined || this.state.bookdetail.bookname } < /Descriptions.Item> <
-            Descriptions.Item label = "类别" > { this.state.bookdetail == undefined || this.state.bookdetail.booktag } < /Descriptions.Item> <
-            Descriptions.Item label = "简介"
-            span = { 3 } > { this.state.bookdetail == undefined || this.state.bookdetail.bookcontent } < /Descriptions.Item> < /
-            Descriptions > <
-            div className = 'buttondiv' > {
-                this.state.bookdetail == undefined || < Button onClick = { this.feedbackBookState } > 申请借阅 < /Button> }
+        return ( <div >
+            <Descriptions title = "图书信息" bordered >
+            <Descriptions.Item label = "ISDN" > { this.state.bookdetail == undefined || this.state.bookdetail.bookid } </Descriptions.Item>
+             <Descriptions.Item label = "作者" > { this.state.bookdetail == undefined || this.state.bookdetail.bookauthor } </Descriptions.Item> 
+            <Descriptions.Item label = "出版社" > { this.state.bookdetail == undefined || this.state.bookdetail.bookpublish } </Descriptions.Item>
+             <Descriptions.Item label = "入库时间" > { this.state.bookdetail == undefined || this.state.bookdetail.putdate } </Descriptions.Item> 
+            <Descriptions.Item label = "库存" > { this.state.bookdetail == undefined || this.state.bookdetail.booknumber } </Descriptions.Item> 
+            <Descriptions.Item label = "书名" > { this.state.bookdetail == undefined || this.state.bookdetail.bookname } </Descriptions.Item>
+             <Descriptions.Item label = "类别" > { this.state.bookdetail == undefined || this.state.bookdetail.booktag } </Descriptions.Item>
+             <Descriptions.Item label = "简介"
+            span = { 3 } > { this.state.bookdetail == undefined || this.state.bookdetail.bookcontent } 
+            </Descriptions.Item>
+             </Descriptions > 
+            <div className = 'buttondiv' > 
+            {this.state.bookdetail == undefined || <Button onClick = { this.feedbackBookState } > 申请借阅 </Button> }
 
-                <
-                /div>
+            </div>
 
-                <
-                /div>
+            </div>
 
             );
         }
     }
-    export default BookInfo;
+
+export default BookInfo;

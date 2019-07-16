@@ -1,75 +1,79 @@
-import { Layout, Menu,  Icon, Input } from 'antd';
+import { Layout, Menu, Icon, Input, message } from 'antd';
 import React, { Component } from 'react';
 import axios from 'axios';
 import serarch from './readerdetail.moudle.css'
 import BookListDetail from '../readerdetail/searchbooklist.js'
-import RecordBookWithReader  from './borrowrecordwithreader.js'
+import RecordBookWithReader from './borrowrecordwithreader.js'
 const { Header, Content, Footer, Sider } = Layout;
-
-
-
 const { Search } = Input;
 
 
 export default class ReaderDetail extends Component {
 
 
-  constructor(props) {
-    super(props);
-    this.state = ({
-      booklist: [],
-      option: "1"
-    });
-  }
+    constructor(props) {
+        super(props);
+        this.state = ({
+            booklist: [],
+            option: "1"
+        });
+    }
 
-  UNSAFE_componentWillMount() {
-    axios.defaults.withCredentials = true;
-    axios.get('http://127.0.0.1:3005/reader/readerislogin').then((data) => {
-      if (data.data.b.match("nologin")) {
-        this.props.history.replace({ pathname: "/" });
-      }
-      console.log(data.data.b);
-    });
-  }
-
-
-  search = (value) => {
-    console.log(value);
-    axios.defaults.withCredentials = true;
-    axios.post('http://127.0.0.1:3005/book/search', {
-      bookname: value
-    }).then((data) => {
-      this.setState({
-        bookList: data.data
-      })
-      console.log(data.data);
-
-    });
-  }
+    UNSAFE_componentWillMount() {
+        axios.defaults.withCredentials = true;
+        axios.get('http://127.0.0.1:3005/reader/readerislogin').then((data) => {
+            if (data.data.b.match("nologin")) {
+                this.props.history.replace({ pathname: "/" });
+            }
+            console.log(data.data.b);
+        });
+    }
 
 
-  itemClick = (value) => {
-    console.log(value.key);
-    this.setState({
-      option: value.key
-    });
-  }
+    search = (value) => {
+        console.log(value);
+        axios.defaults.withCredentials = true;
+        axios.post('http://127.0.0.1:3005/book/search', {
+            bookname: value
+        }).then((data) => {
+            this.setState({
+                bookList: data.data
+            })
+            console.log(data.data);
 
-  logout =()=>{
+        });
+    }
 
-  }
+
+    itemClick = (value) => {
+        console.log(value.key);
+        this.setState({
+            option: value.key
+        });
+    }
+
+    logout = () => {
+        axios.post('http://127.0.0.1:3005/reader/logout').then((data) => {
+            if (data.data.logout == 'success') {
+                window.location.reload();
+            } else {
+                message.error('退出失败，请稍后再试');
+
+            }
+        })
+    }
 
 
-  state = {
-    collapsed: false,
-  };
+    state = {
+        collapsed: false,
+    };
 
-  onCollapse = collapsed => {
-    console.log(collapsed);
-    this.setState({ collapsed });
-  };
+    onCollapse = collapsed => {
+        console.log(collapsed);
+        this.setState({ collapsed });
+    };
 
-  render() {
+   render() {
     let com;
     let search;
     console.log(this.state.bookList)

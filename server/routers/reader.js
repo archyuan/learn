@@ -16,65 +16,77 @@ router.post('/login', (req, res) => {
         if (data.a == "success") {
             req.session.userid = userId;
             req.session.save();
-            
+
         }
-       res.send(data);
+        res.send(data);
     })
 });
 
-router.get('/readerislogin',(request,response)=>{
-    if(request.session.userid){
-        response.send({'b':'islogin'});
-    }else{
-        response.send({'b':'nologin'});
+router.post('/logout', (req, res) => {
+
+    if (req.session.userid) {
+        req.session.destroy((err) => {
+
+        });
+        res.send({ 'logout': 'success' });
+        return;
+    }
+    res.send({ 'logout': 'success' });
+})
+
+router.get('/readerislogin', (request, response) => {
+    if (request.session.userid) {
+        response.send({ 'b': 'islogin' });
+    } else {
+        response.send({ 'b': 'nologin' });
     }
 });
 
-router.post('/booklendingrecords',(request,response)=>{
-   /* let message={};
-    message['state']='success';
-    if(request.session.userid){
-    message['b']='islogin;'
-    }else{
-        message['b']='nologin';
-        //response.send(message);
-      
-    }*/
+router.post('/booklendingrecords', (request, response) => {
+    /* let message={};
+     message['state']='success';
+     if(request.session.userid){
+     message['b']='islogin;'
+     }else{
+         message['b']='nologin';
+         //response.send(message);
+       
+     }*/
 
-    let userId='0';
-    if(request.session.userid){
-        userId=request.session.userid;
+    let userId = '0';
+    if (request.session.userid) {
+        userId = request.session.userid;
     }
-    axios.post('http://127.0.0.1:8095/reader/readercord',{
+    axios.post('http://127.0.0.1:8095/reader/readercord', {
         userid: userId
-    }).then((data)=>{
-         // response.send(data.data);
-       //  message['data']=data;
+    }).then((data) => {
+        // response.send(data.data);
+        //  message['data']=data;
         // console.log("express",message.data);
         response.send(data.data);
     });
-   
+
 });
 
-router.post('/applyabook',(request,response)=>{
+router.post('/applyabook', (request, response) => {
     //申请书籍
-      let userId = '0';
-      let message={};
-      if(!request.session.userid){
-        message['b']='nologin'
+    let userId = '0';
+    let message = {};
+    if (!request.session.userid) {
+        message['b'] = 'nologin'
         response.send(message);
         return;
-          
-      }
-      userId=request.session.userid;
-      axios.post('http://127.0.0.1:8095/reader/applyabook',{
-          bookid:request.body.bookid,
-          readerid:userId
-      }).then((data)=>{
-          message['b']='inlogin';
-          message['data']=data.data;
-          response.send(message);
-      });
+
+    }
+    userId = request.session.userid;
+    axios.post('http://127.0.0.1:8095/reader/applyabook', {
+        bookid: request.body.bookid,
+        readerid: userId
+    }).then((data) => {
+        message['b'] = 'inlogin';
+        message['data'] = data.data;
+        response.send(message);
+    });
 
 });
 
