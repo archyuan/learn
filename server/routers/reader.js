@@ -56,5 +56,27 @@ router.post('/booklendingrecords',(request,response)=>{
    
 });
 
+router.post('/applyabook',(request,response)=>{
+    //申请书籍
+      let userId = '0';
+      let message={};
+      if(!request.session.userid){
+        message['b']='nologin'
+        response.send(message);
+        return;
+          
+      }
+      userId=request.session.userid;
+      axios.post('http://127.0.0.1:8095/reader/applyabook',{
+          bookid:request.body.bookid,
+          readerid:userId
+      }).then((data)=>{
+          message['b']='inlogin';
+          message['data']=data.data;
+          response.send(message);
+      });
+
+});
+
 
 module.exports = router;

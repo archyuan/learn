@@ -47,14 +47,35 @@ class BookInfo extends Component {
             }
             if(this.state.bookdetail.en==true){
                 message.info('当前书籍您已申请借阅或未归还，不可申请');
-                
-            }else{
-            ///向后台申请借书
-
-
-            
-            ///
+                return;
             }
+            ///向后台申请借书
+           
+               if(this.state.bookdetail!=undefined){
+                //this.state.bookdetail.bookid
+                axios.defaults.withCredentials = true;
+                axios.post('http://127.0.0.1:3005/reader/applyabook',{
+                 bookid:this.state.bookdetail.bookid 
+                }).then((data)=>{
+                    console.log(data.data);
+                    if(data.data.b=='nologon'){
+                        message.error("请您先登录");
+                        this.props.history.replace({ pathname: "/" });
+                        return;
+                    }
+                    if(data.data.data=="insertsuccess"){
+                        message.success("申请成功");
+                    }else if(data.data.data=="insertfail"){
+                        message.error("本书的库存不足");
+                    }else if(data.data.data=="isBorrowedOrApllying"){
+                        message.info('当前书籍您已申请借阅或未归还，不可申请');
+                    }
+                });
+               }
+
+
+            ///
+       
             //alert(this.state.bookdetail.en);
            
             console.log("书籍详情");
