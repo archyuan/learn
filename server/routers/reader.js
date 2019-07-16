@@ -30,5 +30,31 @@ router.get('/readerislogin',(request,response)=>{
     }
 });
 
+router.post('/booklendingrecords',(request,response)=>{
+   /* let message={};
+    message['state']='success';
+    if(request.session.userid){
+    message['b']='islogin;'
+    }else{
+        message['b']='nologin';
+        //response.send(message);
+      
+    }*/
+
+    let userId='0';
+    if(request.session.userid){
+        userId=request.session.userid;
+    }
+    axios.post('http://127.0.0.1:8095/reader/readercord',{
+        userid: userId
+    }).then((data)=>{
+         // response.send(data.data);
+       //  message['data']=data;
+        // console.log("express",message.data);
+        response.send(data.data);
+    });
+   
+});
+
 
 module.exports = router;

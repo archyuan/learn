@@ -47,6 +47,13 @@ class BookInfo extends Component {
             }
             if(this.state.bookdetail.en==true){
                 message.info('当前书籍您已申请借阅或未归还，不可申请');
+                
+            }else{
+            ///向后台申请借书
+
+
+            
+            ///
             }
             //alert(this.state.bookdetail.en);
            

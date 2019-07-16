@@ -1,7 +1,30 @@
 import React, { Component } from 'react';
-import { Table, Divider, Tag } from 'antd';
-
+import { Table, Tag } from 'antd';
+import axios from 'axios';
 export default class RecordBookWithReader extends Component {
+
+
+    constructor(props){
+        super(props);
+        this.state={
+            dataSource:[]
+        }
+    }
+
+    UNSAFE_componentWillMount(){
+        //请求借阅记录
+        let message={};
+        axios.defaults.withCredentials = true;
+        axios.post('http://127.0.0.1:3005/reader/booklendingrecords').then((value)=>{
+           
+            this.setState({
+                dataSource:value.data
+            });
+            console.log("message",message);
+            console.log("datasource:",this.state.dataSource);
+        });
+    }
+
 
 
 
@@ -62,6 +85,8 @@ export default class RecordBookWithReader extends Component {
                              color='green';
                          }else if(bs=='借阅中'){
                              color='lime';
+                         }else if(bs=='申请已拒绝'){
+                             color='red';
                          }
                          return(
                              <Tag color={color} key={bs} >
@@ -74,7 +99,7 @@ export default class RecordBookWithReader extends Component {
             }
           ];
 
-       const data = [
+       /*const data = [
             {
              
               bookid: '45843548',
@@ -87,12 +112,12 @@ export default class RecordBookWithReader extends Component {
               bookstate:['申请中'],
             },
            
-          ];
+          ];*/
        
 
         return(
              <div>
-                 <Table  columns={columns} dataSource={data}   />
+                 <Table  columns={columns} dataSource={this.state.dataSource}   />
              </div>
         );
     }

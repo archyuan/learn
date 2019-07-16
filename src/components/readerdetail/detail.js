@@ -80,7 +80,7 @@ export default class ReaderDetail extends Component {
         className={serarch}
       />
     } else if(this.state.option == "2") {
-      com = <RecordBookWithReader />;
+      com = <RecordBookWithReader  history={this.props.history} />;
       search = null;
     }
 
