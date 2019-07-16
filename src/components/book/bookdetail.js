@@ -46,9 +46,9 @@ class BookInfo extends Component {
                 this.props.history.replace({ pathname: "/" });
             }
             if(this.state.bookdetail.en==true){
-                message.info(当前您不可借书);
+                message.info('当前书籍您已申请借阅或未归还，不可申请');
             }
-            alert(this.state.bookdetail.en);
+            //alert(this.state.bookdetail.en);
            
             console.log("书籍详情");
     }

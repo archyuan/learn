@@ -1,11 +1,11 @@
-import { Layout, Menu, Breadcrumb, Icon, Input } from 'antd';
+import { Layout, Menu,  Icon, Input } from 'antd';
 import React, { Component } from 'react';
 import axios from 'axios';
 import serarch from './readerdetail.moudle.css'
 import BookListDetail from '../readerdetail/searchbooklist.js'
-
+import RecordBookWithReader  from './borrowrecordwithreader.js'
 const { Header, Content, Footer, Sider } = Layout;
-const { SubMenu } = Menu;
+
 
 
 const { Search } = Input;
@@ -80,7 +80,7 @@ export default class ReaderDetail extends Component {
         className={serarch}
       />
     } else if(this.state.option == "2") {
-      com = null;
+      com = <RecordBookWithReader />;
       search = null;
     }
 

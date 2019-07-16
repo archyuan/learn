@@ -7,8 +7,7 @@ import axios from 'axios';
 export default class NormalLoginForm extends Component {
 
 
-  pro
-
+  
   handleSubmit = e => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
