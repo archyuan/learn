@@ -7,7 +7,7 @@ import { Form, Icon, Input, Button, Checkbox } from 'antd';
 
 
 export default  class Login extends Component{
-    LoginF=null;
+
 
     constructor(props){
         super(props);
