@@ -15,11 +15,10 @@ router.post('/getbookwithborrowed',(request,response)=>{
        axios.post('http://127.0.0.1:8095/reader/getbookinfobr',{
            userid:request.session.userid
        }).then((data)=>{
-           data.b='inlogin';
-           response.send(data);
+          
+           response.send(data.data);
        });
-    }else{
-        response.send({'b':'nologin'});
+       
     }
 })
 

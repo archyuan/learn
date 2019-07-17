@@ -8,17 +8,34 @@ export default class ApplytoReturnBook extends Component {
 
     constructor(props) {
         super(props);
+        this.state={
+            dataSource:[]
+        };
     }
 
     componentDidMount() {
+        axios.defaults.withCredentials = true;
+        //判断是否已登录
+        axios.get('http://127.0.0.1:3005/reader/readerislogin').then((data)=>{
+            if(data.data.b=='nologin'){
+                this.props.history.replace("/");
+                console.log("未登录");
+                window.location.reload();
+            }
+        });
 
         ///获取已借阅的书籍
 
         ///getbookwithborrowed
-        axios.defaults.withCredentials = true;
+        
         axios.post('http://127.0.0.1:3005/reader/getbookwithborrowed').then((data)=>{
-            console.log(data);
+            console.log(data.data);
+            console.log("进入")
+            this.setState({
+                dataSource:data.data
+            });
         });
+        console.log("出去")
     }
 
 
@@ -31,7 +48,7 @@ export default class ApplytoReturnBook extends Component {
 
     render() {
 
-        const dataSource = [
+      /*  const dataSource = [
             {
                 bookid: '15331542',
                 bookname: '的法定',
@@ -40,7 +57,7 @@ export default class ApplytoReturnBook extends Component {
                 bookstate: 'applyreturnsuccess'
             }
         ];
-
+*/
         const columns = [
             {
                 title: 'BookISBN',
@@ -70,8 +87,8 @@ export default class ApplytoReturnBook extends Component {
                 dataIndex: 'bookstate',
                 render: (text, record, Index) => (
                     <div>
-                        {text == 'applyreturnsuccess' && <Button type="primary" onClick={this.toApplyReturn.bind(this, record, Index)}  >申请还书</Button>}
-                        {text == 'applyreturnfail' && <Button type="primary" onClick={this.toApplyReturn.bind(this, record, Index)} >申请还书</Button>}
+                        {text == 2 && <Button type="primary" onClick={this.toApplyReturn.bind(this, record, Index)}  >申请还书</Button>}
+                        {text != 2&& <Button type="primary" onClick={this.toApplyReturn.bind(this, record, Index)}  disabled >申请还书</Button>}
                     </div>
                 ),
             },
@@ -80,7 +97,7 @@ export default class ApplytoReturnBook extends Component {
 
 
         return (
-            <Table columns={columns} dataSource={dataSource} />
+            <Table columns={columns} dataSource={this.state.dataSource} />
         );
 
     }

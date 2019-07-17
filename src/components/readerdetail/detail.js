@@ -33,7 +33,16 @@ export default class ReaderDetail extends Component {
 
   search = (value) => {
     console.log(value);
+  
     axios.defaults.withCredentials = true;
+    //判断是否已登录
+    axios.get('http://127.0.0.1:3005/reader/readerislogin').then((data)=>{
+        if(data.data.b=='nologin'){
+            this.props.history.replace("/");
+            console.log("未登录");
+            window.location.reload();
+        }
+    });
     axios.post('http://127.0.0.1:3005/book/search', {
       bookname: value
     }).then((data) => {
@@ -88,7 +97,7 @@ export default class ReaderDetail extends Component {
       com = <RecordBookWithReader history={this.props.history} />;
       search = null;
     } else if (this.state.option == "4") {
-      com = <ApplytoReturnBook />
+      com = <ApplytoReturnBook  history={this.props.history} />
     }
 
     return (

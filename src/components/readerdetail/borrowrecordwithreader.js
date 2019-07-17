@@ -11,7 +11,20 @@ export default class RecordBookWithReader extends Component {
         }
     }
 
-    UNSAFE_componentWillMount(){
+    componentDidMount(){
+
+        axios.defaults.withCredentials = true;
+        //判断是否已登录
+        axios.get('http://127.0.0.1:3005/reader/readerislogin').then((data)=>{
+            if(data.data.b=='nologin'){
+                this.props.history.replace("/");
+                console.log("未登录");
+                window.location.reload();
+            }
+        });
+
+
+
         //请求借阅记录
         let message={};
         axios.defaults.withCredentials = true;
