@@ -105,14 +105,22 @@ public class RederController {
     @ResponseBody
     public List<BookInfoWithBorrowed> getBookInfoWithBorrowedOneR(@RequestBody  JSONObject jsonObject){
        ReaderWithBookState readerWithBookState = new ReaderWithBookState();
-        readerWithBookState.setBookstate(0);
+        readerWithBookState.setBookstate(2);
         readerWithBookState.setReaderid(jsonObject.getString("userid"));
         List<BookInfoWithBorrowed> bookInfoWithBorroweds=null;
+        System.out.println("目标进入");
         System.out.println(jsonObject);
         bookInfoWithBorroweds= readerService.getBookInfoWithBorrowOneReder(readerWithBookState);
 
           System.out.println(bookInfoWithBorroweds);
+          System.out.println("目标出去");
           return bookInfoWithBorroweds;
+    }
+
+
+    @PostMapping("/applytoreturnbook")
+    public JSONObject applyToReturnABook(@RequestBody  JSONObject jsonObject){
+
     }
 
 }

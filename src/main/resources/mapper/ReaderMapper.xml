@@ -47,4 +47,8 @@
         where book.bookid=bookstatewithreader.bookid and readerid=#{readerid} and bookstate=#{bookstate}
     </select>
 
+    <update id="applytoreturnbook"  parameterType="com.JyyandEG.library.entity.BIAndRIWithBookONState"  >
+        update bookstatewithreader
+    </update>
+
 </mapper>

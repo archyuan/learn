@@ -23,4 +23,6 @@ public interface ReaderMapper {
     Integer isRegister(AddRederInfo addRederInfo);
 
     List<BookInfoWithBorrowed>  getBookInfoWithBorrowAR(ReaderWithBookState readerWithBookState);
+
+    Integer applytoreturnbook(BIAndRIWithBookONState);
 }
