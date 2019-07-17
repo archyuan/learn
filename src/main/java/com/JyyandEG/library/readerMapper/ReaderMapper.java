@@ -16,4 +16,9 @@ public interface ReaderMapper {
     List<BookStateWithReaderId> getReaderCordByReaderId(String readerid);
 
     int applyABook(BIAndRIWithBookState biAndRIWithBookState);
+    int readerRegister(AddRederInfo addRederInfo);
+
+    Integer getReaderId(AddRederInfo addRederInfo);
+
+    Integer isRegister(AddRederInfo addRederInfo);
 }

@@ -23,7 +23,7 @@ public class ReaderService {
 
     private Byte[] lc = new Byte[0]; //查询锁
     private Byte[] lcc = new Byte[0]; //插入锁
-
+    private Byte[] regisetrlc = new Byte[0];// 注册用户锁
 
     private int havaEnoughBookNumber(BIAndRIWithBookState biAndRIWithBookState) {
         int number = 0;
@@ -86,5 +86,31 @@ public class ReaderService {
             return InsertState.fail;
         }
 
+    }
+
+    public Integer isexit(AddRederInfo addRederInfo){
+        Integer rederid= null;
+        rederid=readerMapper.isRegister(addRederInfo);
+        return rederid;
+    }
+
+    public Integer registerReader(AddRederInfo addRederInfo){
+
+        int num=-1;
+        synchronized (regisetrlc){
+
+            num = readerMapper.readerRegister(addRederInfo);
+        }
+        return num;
+    }
+
+
+    public String getReaderId(AddRederInfo addRederInfo){
+
+         Integer readerid = readerMapper.getReaderId(addRederInfo);
+         if (readerid ==null){
+             return "fail";
+         }
+        return String.valueOf(readerid);
     }
 }

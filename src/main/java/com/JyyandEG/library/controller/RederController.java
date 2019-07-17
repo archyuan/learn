@@ -75,4 +75,29 @@ public class RederController {
     }
 
 
+    @PostMapping("/register")
+    @ResponseBody
+    public JSONObject readerRegister(@RequestBody AddRederInfo addRederInfo){
+        JSONObject jsonObject = new JSONObject();
+          Integer isexit = readerService.isexit(addRederInfo);
+          if (isexit!=null){
+              jsonObject.put("registerstate",String.valueOf(isexit));
+              jsonObject.put("isexit","y");
+              return jsonObject;
+          }
+
+          int num = readerService.registerReader(addRederInfo);
+
+          if(num>0){
+              String readerid = readerService.getReaderId(addRederInfo);
+              jsonObject.put("registerstate",readerid);
+
+          }else {
+               jsonObject.put("registerstate","fail");
+          }
+          jsonObject.put("isexit","n");
+        System.out.println(addRederInfo);
+          return jsonObject;
+    }
+
 }

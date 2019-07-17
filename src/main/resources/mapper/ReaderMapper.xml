@@ -27,4 +27,18 @@
     <insert id="applyABook" parameterType="com.JyyandEG.library.entity.BIAndRIWithBookState"  >
         insert into bookstatewithreader(bookid,readerid,bookstate) values(#{bookid},#{readerid},#{bookstate})
     </insert>
+
+    <insert id="readerRegister" parameterType="com.JyyandEG.library.entity.AddRederInfo"  >
+        insert into reader(readername,readersex,readertel,readerpass) values(#{readername},#{readersex},#{readerphone},#{readerpassword})
+    </insert>
+
+    <select id="getReaderId"  parameterType="com.JyyandEG.library.entity.AddRederInfo" resultType="Integer">
+        select readerid  from reader where readertel=#{readerphone}
+    </select>
+
+    <select id="isRegister"  parameterType="com.JyyandEG.library.entity.AddRederInfo" resultType="Integer" >
+        select readerid from reader where readertel=#{readerphone}
+    </select>
+
+
 </mapper>
