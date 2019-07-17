@@ -31,13 +31,15 @@ export default  class ReaderAdd extends Component {
          }).then((data)=>{
            console.log(data.data);
            if(data.data.isexit=='y'){
-                 message.error(`您先前已注册，读者编号为：${data.data.registerstate}`);
+                 //message.error(`您先前已注册，读者编号为：${data.data.registerstate}`);
+                 this.props.feedback({'re':'warning','readerid':'您先前已注册，读者编号为:'+data.data.registerstate});
            }else if(data.data.isexit=='n'){
                    if(data.data.registerstate=='fail'){
-                     message.error('注册失败');
+                  //   message.error('注册失败');
+                  this.props.feedback({'re':'error','readerid':'注册失败'});
                    }else{
                      //message.success(`注册成功,读者编号为${data.data.registerstate}`);
-                      this.props.feedback({'re':'success','readerid':data.data.registerstate});
+                      this.props.feedback({'re':'success','readerid':'注册成功。您的读者编号为:'+ data.data.registerstate});
                     }
            }
          });

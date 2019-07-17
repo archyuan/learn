@@ -19,12 +19,12 @@ export default class ResultSuccess extends Component{
          return(
 
             <div>
-                  <Result status="success"
-                    title={`注册成功。您的读者编号为：${this.props.va.readerid}`}
+                  <Result status={this.props.va.re}
+                    title={this.props.va.readerid}
                    
                     extra={[
                     <Button type="primary" key="console" onClick={this.gotoFisrstPage.bind(this)} >
-                        返回首页登录
+                        返回首页
                     </Button>,
                     
                     ]}

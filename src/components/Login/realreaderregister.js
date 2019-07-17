@@ -16,7 +16,7 @@ export default class RealReaderRegister extends Component{
 
     resultStatefeedBack=(value)=>{
        console.log(value);
-       if(value.re=="success"){
+       if(value.re=="success" || value.re=='error'||value.re=='warning'){
            this.setState({
             feedbackvalue:value,
             option:'1'
