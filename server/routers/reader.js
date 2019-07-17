@@ -4,6 +4,18 @@ const axios = require('axios');
 
 
 
+
+
+router.post('/register',(request,response)=>{
+
+      axios.post('http://127.0.0.1:8095/reader/register',request.body).then((data)=>{
+                response.send(data.data);              
+      });
+  
+
+});
+
+
 router.post('/login', (req, res) => {
 
     let userId = req.body.userid;
