@@ -7,6 +7,16 @@ import axios from 'axios';
 export default class NormalLoginForm extends Component {
 
 
+         constructor(props){
+           super(props);
+         }
+
+
+         gotoregister=()=>{
+           this.props.history.push('/reader/register');
+          
+         };
+
   
   handleSubmit = e => {
     e.preventDefault();
@@ -64,11 +74,14 @@ export default class NormalLoginForm extends Component {
           )}
         </Form.Item>
         <Form.Item>
-
+           <div>
+             <span> <a href="" onClick={this.gotoregister.bind(this)} >现在开始注册</a></span>
+             <span>
           <Button type="primary" htmlType="submit" className="login-form-button" className="button" >
             登录
             </Button>
-
+            </span>
+           </div>
         </Form.Item>
       </Form>
     

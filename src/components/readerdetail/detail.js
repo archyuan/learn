@@ -101,6 +101,10 @@ export default class ReaderDetail extends Component {
               <Icon type="desktop" />
               <span>借阅记录</span>
             </Menu.Item>
+            <Menu.Item key="4" onClick={this.itemClick} >
+              <Icon type="desktop" />
+              <span>申请还书</span>
+            </Menu.Item>
             <Menu.Item key="3" onClick={this.logout} >
               <Icon type="desktop" />
               <span>退出登录</span>
