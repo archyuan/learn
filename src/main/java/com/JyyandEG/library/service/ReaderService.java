@@ -66,7 +66,8 @@ public class ReaderService {
     public String applyABook(BIAndRIWithBookState biAndRIWithBookState) {
 
        List<Integer> states= checkBookIsReturn(biAndRIWithBookState);
-        if (states!=null&&(states.contains(BookState.isBorrowed)||states.contains(BookState.isApplying))){
+        if (states!=null&&(states.contains(BookState.isBorrowed)||states.contains(BookState.isApplying)
+        || states.contains(BookState.isApplyingtoReturn))){
 
 
            return  "isBorrowedOrApllying";
