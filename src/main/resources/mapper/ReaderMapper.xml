@@ -40,5 +40,11 @@
         select readerid from reader where readertel=#{readerphone}
     </select>
 
+    <select id="getBookInfoWithBorrowAR" parameterType="com.JyyandEG.library.entity.ReaderWithBookState"
+        resultType="com.JyyandEG.library.entity.BookInfoWithBorrowed"
+    >
+        select book.bookid,bookname,bookauthor,bookpublish,bookstate  from book,bookstatewithreader
+        where book.bookid=bookstatewithreader.bookid and readerid=#{readerid} and bookstate=#{bookstate}
+    </select>
 
 </mapper>

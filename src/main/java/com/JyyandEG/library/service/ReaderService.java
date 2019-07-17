@@ -114,4 +114,9 @@ public class ReaderService {
          }
         return String.valueOf(readerid);
     }
+
+
+    public  List<BookInfoWithBorrowed> getBookInfoWithBorrowOneReder(ReaderWithBookState readerWithBookState){
+        return readerMapper.getBookInfoWithBorrowAR(readerWithBookState);
+    }
 }
