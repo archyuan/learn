@@ -5,6 +5,23 @@ const axios = require('axios');
 
 
 
+router.post('/applytoreturn',(request,response)=>{
+    
+});
+
+router.post('/getbookwithborrowed',(request,response)=>{
+    if(request.session.userid){
+        ////do some thing
+       axios.post('http://127.0.0.1:8095/reader/getbookinfobr',{
+           userid:request.session.userid
+       }).then((data)=>{
+           data.b='inlogin';
+           response.send(data);
+       });
+    }else{
+        response.send({'b':'nologin'});
+    }
+})
 
 router.post('/register',(request,response)=>{
 
