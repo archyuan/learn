@@ -58,7 +58,7 @@ public class RederController {
         List<BookStateWithReader> bookStateWithReaders=null;
         if (jsonObject.getString("userid").equals("0"))
             return bookStateWithReaders;
-        bookStateWithReaders= readerService.getReaderCordByReaderId("101000");
+        bookStateWithReaders= readerService.getReaderCordByReaderId(jsonObject.getString("userid"));
         System.out.println(bookStateWithReaders);
         return bookStateWithReaders;
     }
