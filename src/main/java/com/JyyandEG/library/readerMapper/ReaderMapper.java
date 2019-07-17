@@ -24,5 +24,5 @@ public interface ReaderMapper {
 
     List<BookInfoWithBorrowed>  getBookInfoWithBorrowAR(ReaderWithBookState readerWithBookState);
 
-    Integer applytoreturnbook(BIAndRIWithBookONState);
+    Integer applytoreturnbook(BIAndRIWithBookONState biAndRIWithBookONState);
 }

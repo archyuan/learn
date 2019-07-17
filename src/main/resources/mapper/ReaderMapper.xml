@@ -48,7 +48,8 @@
     </select>
 
     <update id="applytoreturnbook"  parameterType="com.JyyandEG.library.entity.BIAndRIWithBookONState"  >
-        update bookstatewithreader
+        update bookstatewithreader set bookstate=#{newbookstate} where bookid=#{bookid} and readerid=#{readerid}
+        and bookstate=#{oldbookstate}
     </update>
 
 </mapper>

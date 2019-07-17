@@ -1,5 +1,6 @@
 package com.JyyandEG.library.controller;
 
+import com.JyyandEG.library.Const.BookState;
 import com.JyyandEG.library.Const.InsertState;
 import com.JyyandEG.library.entity.*;
 import com.JyyandEG.library.service.ReaderService;
@@ -19,6 +20,19 @@ public class RederController {
 
     @Autowired
     ReaderService readerService;
+
+   private JSONObject applytoretunProcess(Integer num){
+       JSONObject jsonObject = new JSONObject();
+       if(num!=null){
+           if (num>0)
+               jsonObject.put("state","success");
+           else {jsonObject.put("state","fail");}
+       }else {
+           jsonObject.put("state","noexist");
+       }
+       return jsonObject;
+   }
+
 
     @GetMapping("/allreader")
     @ResponseBody
@@ -119,8 +133,15 @@ public class RederController {
 
 
     @PostMapping("/applytoreturnbook")
+    @ResponseBody
     public JSONObject applyToReturnABook(@RequestBody  JSONObject jsonObject){
-
+        System.out.println(jsonObject);
+        BIAndRIWithBookONState biAndRIWithBookONState = new BIAndRIWithBookONState();
+        biAndRIWithBookONState.setBookid(jsonObject.getString("bookid"));
+        biAndRIWithBookONState.setReaderid(Integer.parseInt(jsonObject.getString("readerid")));
+        biAndRIWithBookONState.setOldbookstate(BookState.isBorrowed);
+        biAndRIWithBookONState.setNewbookstate(BookState.isApplyingtoReturn);
+        return applytoretunProcess(readerService.applyToReturn(biAndRIWithBookONState));
     }
 
 }

@@ -119,4 +119,8 @@ public class ReaderService {
     public  List<BookInfoWithBorrowed> getBookInfoWithBorrowOneReder(ReaderWithBookState readerWithBookState){
         return readerMapper.getBookInfoWithBorrowAR(readerWithBookState);
     }
+
+    public Integer applyToReturn(BIAndRIWithBookONState biAndRIWithBookONState){
+        return readerMapper.applytoreturnbook(biAndRIWithBookONState);
+    }
 }
