@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Table, Button } from 'antd';
+import { Table, Button,message } from 'antd';
 import axios from 'axios';
 
 export default class ApplytoReturnBook extends Component {
@@ -43,6 +43,37 @@ export default class ApplytoReturnBook extends Component {
 
     toApplyReturn = (record, Index) => {
         console.log(record, Index);
+        axios.defaults.withCredentials = true;
+        //判断是否已登录
+        axios.get('http://127.0.0.1:3005/reader/readerislogin').then((data)=>{
+            if(data.data.b=='nologin'){
+                this.props.history.replace("/");
+                console.log("未登录");
+                window.location.reload();
+            }
+        });
+
+
+        axios.post('http://127.0.0.1:3005/reader/applytoreturn',{
+            bookid:record.bookid
+        }).then((data)=>{
+            ///处理一下
+            if(data.data.state=="success"){
+                console.log("操作成功");
+                this.state.dataSource[Index].booksate=4;
+             
+                this.setState({
+                   dataSource: this.state.dataSource
+                });
+                message.success("操作成功");
+               
+            }else if(data.data.state=="fail"){
+                message.error("操作失败");
+            }else if(data.data.state=="noexist"){
+                message.info("该书籍处于其他状态");
+            }
+        });
+
     }
 
 

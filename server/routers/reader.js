@@ -6,7 +6,12 @@ const axios = require('axios');
 
 
 router.post('/applytoreturn',(request,response)=>{
-    
+      axios.post('http://127.0.0.1:8095/reader/applytoreturnbook',{
+          bookid:request.body.bookid,
+          readerid:request.session.userid
+      }).then((data)=>{
+             response.send(data.data);
+      });
 });
 
 router.post('/getbookwithborrowed',(request,response)=>{
