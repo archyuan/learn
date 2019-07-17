@@ -6,10 +6,16 @@ import axios from 'axios';
 const { Option } = Select;
 
 export default  class ReaderAdd extends Component {
-  state = {
-    confirmDirty: false,
-    autoCompleteResult: [],
-  };
+
+    constructor(props){
+      super(props);
+      this.state=({
+        confirmDirty: false,
+        autoCompleteResult: [],
+      })
+    }
+
+  
 
   handleSubmit = e => {
     e.preventDefault();
@@ -30,8 +36,9 @@ export default  class ReaderAdd extends Component {
                    if(data.data.registerstate=='fail'){
                      message.error('注册失败');
                    }else{
-                     message.success(`注册成功,读者编号为${data.data.registerstate}`);
-                   }
+                     //message.success(`注册成功,读者编号为${data.data.registerstate}`);
+                      this.props.feedback({'re':'success','readerid':data.data.registerstate});
+                    }
            }
          });
 

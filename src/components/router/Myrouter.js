@@ -6,12 +6,13 @@ import ReaderDetail from '../readerdetail/detail'
 import Login from '../Login/login'
 import BookInfo from '../book/bookdetail.js'
 import RealReaderRegister from '../Login/realreaderregister.js'
+import  ResultSuccess from '../result/resultsuccess.js'
 export default class Userouter extends Component {
 
 
 
 
-
+ 
     render() {
 
         return (
@@ -24,6 +25,8 @@ export default class Userouter extends Component {
               <Route  path = "/reader/register" component={RealReaderRegister}  />
                <Route exact path = "/reader/detail" component = { ReaderDetail } /> 
             <Route exact path = "/reader/bookdetail" component = { BookInfo } /> 
+          
+            
             </Switch> 
             </Router>
 
