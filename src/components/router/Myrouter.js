@@ -10,6 +10,7 @@ import Admin from '../../admin.js'
 import Interface from '../.././Interface.js'
 import MainPageSuper from '../../superManager/MainPageSuper.jsx'
 import MainPageNormal from '../../normalManager/MainPageNormal.jsx'
+import AdminLogin from '../admin/adminlogin.js'
 export default class Userouter extends Component {
 
 
@@ -28,7 +29,7 @@ export default class Userouter extends Component {
               <Route  path = "/reader/register" component={RealReaderRegister}  />
             <Route exact path = "/reader/detail" component = { ReaderDetail } /> 
             <Route exact path = "/reader/bookdetail" component = { BookInfo } /> 
-            <Route exact path="/as" component={Interface} />
+            <Route exact path="/admin" component={AdminLogin} />
             <Route exact path="/superManager" component={MainPageSuper} />
             <Route exact path="/superManager/*" component={MainPageSuper} />
             <Route exact path="/normalManager" component={MainPageNormal} />
