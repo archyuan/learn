@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.example.demo.dao.AdminDao"  >
+
+    <select id="getAdminName" parameterType="com.example.demo.entity.AdminEntity" resultType="java.lang.String" >
+        select  managerName from manager where managerID=#{managerID} and managerPassword=#{managerPassword}
+        and managerType=#{managerType}
+    </select>
+
+</mapper>
