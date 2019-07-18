@@ -55,11 +55,7 @@ export default class ReaderDetail extends Component {
   }
 
 
-     applyfeedback=()=>{
-       this.setState({
-         option:"4"
-       });
-     };
+    
 
   itemClick = (value) => {
     console.log(value.key);
@@ -103,7 +99,7 @@ export default class ReaderDetail extends Component {
       com = <RecordBookWithReader history={this.props.history} />;
       search = null;
     } else if (this.state.option == "4") {
-      com = <ApplytoReturnBook  history={this.props.history}   feedback={this.applyfeedback.bind(this)} />
+      com = <ApplytoReturnBook  history={this.props.history}   />
     }
 
     return (

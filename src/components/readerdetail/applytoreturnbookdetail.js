@@ -4,8 +4,6 @@ import axios from 'axios';
 
 export default class ApplytoReturnBook extends Component {
 
-
-
     constructor(props) {
         super(props);
         this.state={
@@ -30,7 +28,8 @@ export default class ApplytoReturnBook extends Component {
         
         axios.post('http://127.0.0.1:3005/reader/getbookwithborrowed').then((data)=>{
             console.log(data.data);
-            console.log("进入")
+            console.log("进入");
+            console.log("DidMount");
             this.setState({
                 dataSource:data.data
             });
@@ -41,9 +40,21 @@ export default class ApplytoReturnBook extends Component {
 
     componentDidUpdate(){
 
+     /*   axios.post('http://127.0.0.1:3005/reader/getbookwithborrowed').then((data)=>{
+            console.log(data.data);
+            console.log("进入");
+            console.log("componentWillUpdate");
+            this.setState({
+                dataSource:data.data
+            });
+        });*/
+    }
+    
+    getList=()=>{
         axios.post('http://127.0.0.1:3005/reader/getbookwithborrowed').then((data)=>{
             console.log(data.data);
-            console.log("进入")
+            console.log("进入");
+            console.log("componentWillUpdate");
             this.setState({
                 dataSource:data.data
             });
@@ -70,12 +81,14 @@ export default class ApplytoReturnBook extends Component {
             ///处理一下
             if(data.data.state=="success"){
                 console.log("操作成功");
-                this.state.dataSource[Index].booksate=4;
+                console.log(this);
+                this.getList();
+               /* this.state.dataSource[Index].booksate=4;
              
                 this.setState({
                    dataSource: this.state.dataSource
-                });
-                message.success("操作成功");
+                });*/
+               // message.success("操作成功");
                
             }else if(data.data.state=="fail"){
                 message.error("操作失败");
