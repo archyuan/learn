@@ -26,7 +26,7 @@ export default class ApplytoReturnBook extends Component {
 
         ///getbookwithborrowed
         
-        axios.post('http://127.0.0.1:3005/reader/getbookwithborrowed').then((data)=>{
+/*        axios.post('http://127.0.0.1:3005/reader/getbookwithborrowed').then((data)=>{
             console.log(data.data);
             console.log("进入");
             console.log("DidMount");
@@ -34,7 +34,8 @@ export default class ApplytoReturnBook extends Component {
                 dataSource:data.data
             });
         });
-        console.log("出去")
+        console.log("出去")*/
+        this.getList();
     }
 
 
