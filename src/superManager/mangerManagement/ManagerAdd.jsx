@@ -1,10 +1,17 @@
 import React, { Component } from 'react';
 import './Manager.css';
-import { Form, Input, Button} from 'antd';
+import { Form, Input, Button, message} from 'antd';
 import SexOption from '../../component/SexOption.jsx'
 
 const axios = require('axios');
 const config = require('../../config/config.js')
+const success = () => {
+  message
+  .success('添加成功',1,()=>{
+    window.location.href = `${config.UI_PATH}/superManager/manageManager`
+  })
+  
+};
 
 
 class ManagerAdd extends Component {
@@ -20,8 +27,7 @@ class ManagerAdd extends Component {
         console.log(values);
         axios.post(`${config.Front_PATH}/manager/addmanager`,values).then(
            ()=>{
-             alert('添加成功');
-             window.location.href = `${config.UI_PATH}/superManager/manageManager`;
+            success();
            }
          )
       }

@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
 import './Book.css';
-import { Table, Divider, Modal } from 'antd';
+import { Table, Divider, Modal, message } from 'antd';
 import {NavLink} from 'react-router-dom';
 const axios = require('axios');
 const config = require('../../config/config.js')
+const success = () => {
+  message
+  .success('删除成功',1)
+  
+};
 
 
 
@@ -58,7 +63,7 @@ class BookMag extends Component {
     console.log(value)
     axios.post(`${config.Front_PATH}/book/deletebook`,value).then(
            ()=>{
-             alert('删除成功');
+             success();
            }
          )   
 

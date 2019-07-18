@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import './Manager.css';
-import { Table, Divider, Modal} from 'antd';
+import { Table, Divider, Modal,message} from 'antd';
 const axios = require('axios');
 const config = require('../../config/config.js')
+const success = () => {
+  message
+  .success('删除成功',1,)
+  
+};
 
 
 class ManagerMag extends Component {
@@ -58,7 +63,7 @@ class ManagerMag extends Component {
     console.log(value)
     axios.post(`${config.Front_PATH}/manager/deletemanager`,value).then(
            ()=>{
-             alert('删除成功');
+             success();
            }
          )   
 

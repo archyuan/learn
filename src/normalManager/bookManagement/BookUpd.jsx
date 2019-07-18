@@ -1,8 +1,15 @@
 import React, { Component } from 'react';
 import './Book.css';
-import { Form, Input, Button } from 'antd';
+import { Form, Input, Button,message } from 'antd';
 const axios = require('axios');
 const config = require('../../config/config.js')
+const success = () => {
+  message
+  .success('修改成功',1,()=>{
+    window.location.href = `${config.UI_PATH}/normalManager/manageBook`
+  })
+  
+};
 
 const { TextArea } = Input;
 
@@ -35,8 +42,7 @@ class BookUpd extends Component {
         console.log(values);
         axios.post(`${config.Front_PATH}/book/updatebook`,values).then(
            ()=>{
-             alert('修改成功');
-             window.location.href = `${config.UI_PATH}/normalManager/manageBook`;
+             success();
            }
          )
       }

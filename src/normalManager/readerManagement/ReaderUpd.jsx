@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
 import './Reader.css';
-import { Form, Input, Select, Button } from 'antd';
+import { Form, Input, Select, Button,message } from 'antd';
 const axios = require('axios');
+const success = () => {
+  message
+  .success('修改成功',1,()=>{
+    window.location.href = `${config.UI_PATH}/normalManager/manageReader`
+  })
+  
+};
 
 const { Option } = Select;
 const config = require('../../config/config.js')
@@ -42,8 +49,7 @@ class ReaderUpd extends Component {
 
         }).then(
            ()=>{
-             alert('修改成功');
-             window.location.href = `${config.UI_PATH}/normalManager/manageReader`;
+             success();
            }
          )
       }

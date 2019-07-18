@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
 import './Reader.css';
-import { Table, Divider, Modal } from 'antd';
+import { Table, Divider, Modal,message } from 'antd';
 import { NavLink } from 'react-router-dom';
 const axios = require('axios');
 const config = require('../../config/config')
+const success = () => {
+  message
+  .success('删除成功',1)
+  
+};
 class ReaderMag extends Component {
   state={
     data:0,
@@ -54,7 +59,7 @@ class ReaderMag extends Component {
     console.log(value)
     axios.post(`${config.Front_PATH}/reader/deletereader`,value).then(
            ()=>{
-             alert('删除成功');
+             success();
            }
          )   
 

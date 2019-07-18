@@ -1,10 +1,22 @@
 import React, { Component } from 'react';
 import './Book.css';
-import { Form, Input, Button } from 'antd';
+import { Form, Input, Button, message } from 'antd';
 import BookOption from '../../component/BookOption'
 
 const axios = require('axios');
 const config = require('../../config/config.js')
+const success = () => {
+  message
+  .success('添加成功',1,()=>{
+    window.location.href = `${config.UI_PATH}/normalManager/manageBook`
+  })
+  
+};
+const error = () => {
+  message
+  .error('该书的ISBN已存在，不能添加',1)
+  
+};
 
 const { TextArea } = Input;
 
@@ -22,11 +34,10 @@ class BookAdd extends Component {
            (data)=>{
              console.log(data.data);
              if(data.data=="alreadyhave"){
-               alert('该图书的ISDN已存在');
+               error();
               }
              else{
-                alert('添加成功');
-                window.location.href = `${config.UI_PATH}/normalManager/manageBook`;
+                success();
               }
            }
          )
