@@ -7,7 +7,7 @@ const config = require('../../config/config');
 
 
 router.post('/applytoreturn',(request,response)=>{
-      axios.post(`${config.Back_PATH}/reader/applytoreturnboo`,{
+      axios.post(`${config.Back_PATH}/reader/applytoreturnbook`,{
           bookid:request.body.bookid,
           readerid:request.session.userid
       }).then((data)=>{

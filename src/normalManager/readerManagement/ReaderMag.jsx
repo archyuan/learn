@@ -33,6 +33,7 @@ class ReaderMag extends Component {
     });
   };
   componentDidMount=()=>{
+    axios.defaults.withCredentials = true;
     axios.get(`${config.Front_PATH}/reader/getreader`).then((data)=>{
       this.setState(
         {
@@ -42,6 +43,7 @@ class ReaderMag extends Component {
     })
   }
   componentDidUpdate=()=>{
+    axios.defaults.withCredentials = true;
     axios.get(`${config.Front_PATH}/reader/getreader`).then((data)=>{
       this.setState(
         {
@@ -56,7 +58,8 @@ class ReaderMag extends Component {
   }
 
   deleteReaderDetail=(value)=>{
-    console.log(value)
+    console.log(value);
+    axios.defaults.withCredentials = true;
     axios.post(`${config.Front_PATH}/reader/deletereader`,value).then(
            ()=>{
              success();

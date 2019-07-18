@@ -37,6 +37,7 @@ class BookMag extends Component {
     });
   };
   componentDidMount=()=>{
+    axios.defaults.withCredentials = true;
     axios.get(`${config.Front_PATH}/book/getbook`).then((data)=>{
       this.setState(
         {
@@ -46,6 +47,7 @@ class BookMag extends Component {
     })
   }
   componentDidUpdate=()=>{
+    axios.defaults.withCredentials = true;
     axios.get(`${config.Front_PATH}/book/getbook`).then((data)=>{
       this.setState(
         {
@@ -61,6 +63,7 @@ class BookMag extends Component {
 
   deleteBookDetail=(value)=>{
     console.log(value)
+    axios.defaults.withCredentials = true;
     axios.post(`${config.Front_PATH}/book/deletebook`,value).then(
            ()=>{
              success();

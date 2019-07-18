@@ -5,6 +5,7 @@ import serarch from './readerdetail.moudle.css'
 import BookListDetail from '../readerdetail/searchbooklist.js'
 import RecordBookWithReader from './borrowrecordwithreader.js'
 import ApplytoReturnBook from './applytoreturnbookdetail.js'
+
 const { Header, Content, Footer, Sider } = Layout;
 const { Search } = Input;
 const config = require('../../config/config')
@@ -17,7 +18,8 @@ export default class ReaderDetail extends Component {
     super(props);
     this.state = ({
       booklist: [],
-      option: "1"
+      option: "1",
+      collapsed: false,
     });
   }
 
@@ -30,7 +32,6 @@ export default class ReaderDetail extends Component {
       console.log(data.data.b);
     });
   }
-
 
   search = (value) => {
     console.log(value);
@@ -77,9 +78,7 @@ export default class ReaderDetail extends Component {
   }
 
 
-  state = {
-    collapsed: false,
-  };
+  
 
   onCollapse = collapsed => {
     console.log(collapsed);
@@ -129,7 +128,7 @@ export default class ReaderDetail extends Component {
         </Sider>
         <Layout>
           <Header style={{ background: '#fff', padding: 0 }} >
-            某某欢迎
+        
                 {search}
           </Header>
 

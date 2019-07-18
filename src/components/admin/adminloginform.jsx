@@ -23,7 +23,18 @@ export default class AdminLoginForm extends Component {
         console.log(values.password);
         axios.defaults.withCredentials = true;
         axios.post(`${config.Front_PATH}/admin/login`,values).then((data)=>{
-          console.log(data.data);
+          console.log(data.data);//
+
+          if(data.data.state=="success"){
+            if(values.option=="1"){
+              this.props.history.push("/superManager");
+            }else if(values.option=="2"){
+              this.props.history.push("/normalManager");
+            }
+          }else if(data.data.state=="fail"){
+            message.error("账号或密码或组别错误");
+          }
+
         });
 
      

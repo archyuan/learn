@@ -18,6 +18,14 @@ router.post('/search', (req, res) => {
     })
 });
 
+router.post('/getallbook',(req,res)=>{
+
+
+    axios.post(`${config.Back_PATH}/book/all`).then((data)=>{
+        res.send(data.data);
+    });
+});
+
 router.post('/bookisable',(requets,response)=>{
     if(requets.session.userid){
          axios.post(`${config.Back_PATH}/book/isable`,{

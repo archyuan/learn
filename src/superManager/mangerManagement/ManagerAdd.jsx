@@ -25,6 +25,7 @@ class ManagerAdd extends Component {
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
         console.log(values);
+        axios.defaults.withCredentials = true;
         axios.post(`${config.Front_PATH}/manager/addmanager`,values).then(
            ()=>{
             success();

@@ -25,6 +25,7 @@ class ManagerUpdate extends Component {
   }
   
   componentDidMount=()=>{
+    axios.defaults.withCredentials = true;
     axios.post(`${config.Front_PATH}/manager/getonemanagerinfo`,{managerId:this.props.match.params.id}).then(
            (data)=>{
            console.log("from background",data.data);
@@ -40,6 +41,7 @@ class ManagerUpdate extends Component {
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
         console.log(values);
+        axios.defaults.withCredentials = true;
         axios.post(`${config.Front_PATH}/manager/updatemanager`,values).then(
            ()=>{
              success();

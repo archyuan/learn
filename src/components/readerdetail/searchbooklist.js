@@ -10,8 +10,27 @@ export default class BookListDetail extends Component {
         super(props)
         this.state = {
             data: [],
+            bookList:[]
         };
     }
+
+    
+    componentDidMount(){
+    
+  
+        axios.defaults.withCredentials = true;
+          axios.post(`${config.Front_PATH}/book/getallbook`).then((data)=>{
+               
+            console.log(data.data);
+            this.setState({
+                bookList:data.data
+               });
+               
+          });
+     
+  
+      }
+  
 
     gotoBookDetail = (value) => {
         // console.log(value);
@@ -88,7 +107,7 @@ export default class BookListDetail extends Component {
             ];
 
 
-        return( <Table columns = { columns } dataSource = { this.props.bookList } />);
+        return( <Table columns = { columns } dataSource = { this.props.bookList || this.state.bookList } />);
     }
 
 

@@ -11,14 +11,48 @@ import BorrowAdd from './borrowManagement/BorrowAdd.jsx'
 import BorrowMag from './borrowManagement/BorrowMag.jsx'
 import BorrowUpd from './borrowManagement/BorrowUpd.jsx'
 import Welcome from './Welcome.jsx'
-
-
+import axios from 'axios';
+const config = require('../config/config.js')
 
 const { SubMenu } = Menu;
 const { Header, Content, Footer, Sider } = Layout;
 
 
 class MainPageSuper extends Component {
+
+    constructor(props){
+      super(props);
+      this.state={
+        managername:''
+      }
+    }
+
+
+    logout=()=>{
+      axios.defaults.withCredentials = true;
+      axios.post(`${config.Front_PATH}/admin/logout`).then((data)=>{
+        if(data.data.islogout=='success'){
+          this.props.history.replace("/admin");
+        }
+      });
+    };
+  
+
+    componentDidMount(){
+
+      axios.defaults.withCredentials = true;
+      axios.post(`${config.Front_PATH}/admin/islogin`).then((data)=>{
+        if(data.data.islogin=="nologin"){
+          this.props.history.replace("/admin");
+        }else{
+          this.setState({
+            managername:data.data.islogin
+          });
+        }
+      });
+
+    }
+
   render() {
     return (
       <Router>
@@ -31,7 +65,7 @@ class MainPageSuper extends Component {
               defaultSelectedKeys={['1']}
               style={{ lineHeight: '64px' }}
             >
-              <Menu.Item key="1">普通管理员</Menu.Item>
+              <Menu.Item key="1">{`普通管理员:${this.state.managername}`}</Menu.Item>
             </Menu>
           </Header>
           <Content style={{ padding: '0 50px' }}>
@@ -54,6 +88,9 @@ class MainPageSuper extends Component {
                     <Menu.Item key="5"><NavLink to="/normalManager/addReturn">归还申请管理</NavLink></Menu.Item>
                     <Menu.Item key="6"><NavLink to="/normalManager/manageBorrow">借阅记录管理</NavLink></Menu.Item>
                   </SubMenu>
+                  <Menu.Item >
+                    <p  onClick={this.logout} >退出登录</p>
+                  </Menu.Item>
                 </Menu>
               </Sider>
               <Content style={{ padding: '0 24px', height:'620px' }}>

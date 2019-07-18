@@ -14,6 +14,7 @@ class BorrowAdd extends Component {
     data:0
   }
   componentDidMount=()=>{
+    axios.defaults.withCredentials = true;
     axios.get(`${config.Front_PATH}/borrow/getborrowrequestlist`).then((data)=>{
       this.setState(
         {
@@ -23,6 +24,7 @@ class BorrowAdd extends Component {
     })
   }
   componentDidUpdate=()=>{
+    axios.defaults.withCredentials = true;
     axios.get(`${config.Front_PATH}/borrow/getborrowrequestlist`).then((data)=>{
       this.setState(
         {
@@ -41,7 +43,8 @@ class BorrowAdd extends Component {
 
   }
   handleRefuse=(value)=>{
-    console.log(value)
+    console.log(value);
+    axios.defaults.withCredentials = true;
     axios.post(`${config.Front_PATH}/borrow/refuseborrow`,value).then(
            ()=>{
              alert('拒绝申请成功');

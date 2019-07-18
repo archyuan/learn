@@ -25,6 +25,7 @@ class ReaderUpd extends Component {
   }
 
   componentDidMount=()=>{
+    axios.defaults.withCredentials = true;
     axios.post(`${config.Front_PATH}/reader/getonereaderinfo`,{readerId:this.props.match.params.id}).then(
            (data)=>{
            console.log("from background",data.data);

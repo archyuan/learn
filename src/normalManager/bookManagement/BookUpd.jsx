@@ -25,6 +25,7 @@ class BookUpd extends Component {
   }
   
   componentDidMount=()=>{
+    axios.defaults.withCredentials = true;
     axios.post(`${config.Front_PATH}/book/getonebookinfo`,{bookId:this.props.match.params.id}).then(
            (data)=>{
            console.log("from background",data.data);

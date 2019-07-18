@@ -11,6 +11,7 @@ class BorrowUpd extends Component {
     data:0
   }
   componentDidMount=()=>{
+    axios.defaults.withCredentials = true;
     axios.get(`${config.Front_PATH}/borrow/getreturnrequestlist`).then((data)=>{
       this.setState(
         {
@@ -20,6 +21,7 @@ class BorrowUpd extends Component {
     })
   }
   componentDidUpdate=()=>{
+    axios.defaults.withCredentials = true;
     axios.get(`${config.Front_PATH}/borrow/getreturnrequestlist`).then((data)=>{
       this.setState(
         {
