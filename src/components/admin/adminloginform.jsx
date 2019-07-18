@@ -22,6 +22,10 @@ export default class AdminLoginForm extends Component {
         console.log(values.username);
         console.log(values.password);
         axios.defaults.withCredentials = true;
+        axios.post(`${config.Front_PATH}/admin/login`,values).then((data)=>{
+          console.log(data.data);
+        });
+
      
       }
     });
@@ -54,7 +58,9 @@ export default class AdminLoginForm extends Component {
           )}
         </Form.Item>
         <Form.Item  >
-          {getFieldDecorator('option')(
+          {getFieldDecorator('option',{
+            rules:[{required:true,message:'请选择您的管理员类别'}],
+          })(
           <Select defaultValue="1">
             <Option value="1">超级管理员</Option>
             <Option value="2">普通管理员</Option>

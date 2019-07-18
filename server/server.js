@@ -12,7 +12,7 @@ const demoRouter = require('./routers/animalRouter');
 const demoAnimallAll = require('./routers/animallAllRouter');
 const readerRouter = require('./routers/reader');
 const bookRouter = require('./routers/book');
-
+const adminRouter = require('./routers/admin.js');
 // fromEG
 const demoRouter1 = require('./routers/managerRouter');
 const demoRouter2 = require('./routers/readerRouter');
@@ -80,6 +80,7 @@ app.use('/animal', demoRouter);  // Express Middleware
 app.use('/ani',demoAnimallAll);
 app.use('/reader',readerRouter);
 app.use('/book',bookRouter);
+app.use('/admin',adminRouter);
 // Send resource
 
 
