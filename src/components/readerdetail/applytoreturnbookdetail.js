@@ -39,6 +39,16 @@ export default class ApplytoReturnBook extends Component {
     }
 
 
+    componentDidUpdate(){
+
+        axios.post('http://127.0.0.1:3005/reader/getbookwithborrowed').then((data)=>{
+            console.log(data.data);
+            console.log("进入")
+            this.setState({
+                dataSource:data.data
+            });
+        });
+    }
 
 
     toApplyReturn = (record, Index) => {
