@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.readerMapper.ReaderMapper" >
+
+    <resultMap id="readerWithnoPass" type="com.example.demo.entity.Reader">
+        <result property="readerid" column="readerid" />
+        <result property="readername" column="readername" />
+        <result  property="readersex"  column="readersex" />
+        <result  property="readerocuupation"  column="readerocuupation" />
+        <result  property="readertel"  column="readertel" />
+        <result  property="readeraddress" column="readeraddress" />
+    </resultMap>
+
+    <select id="getAllReader" resultMap="readerWithnoPass"  >
+      select readerid,readername,readersex,readerocuupation,readertel,readeraddress   from reader
+    </select>
+
+    <select id="getReaderById"  parameterType="Integer" resultType="com.example.demo.entity.ReaderWithinIdAndPass" >
+        select  readerid,readerpass  from reader where readerid=#{id}
+    </select>
+
+    <select id="getReaderCordByReaderId" parameterType="java.lang.String"  resultType="com.example.demo.entity.BookStateWithReaderId" >
+        select bookstatewithreader.bookid,bookstatewithreader.borrowbooktime,bookstatewithreader.returnbooktime,bookstatewithreader.bookstate,book.bookname,book.bookauthor,book.bookpublish
+        ,book.booktag from bookstatewithreader,book where book.bookid=bookstatewithreader.bookid and bookstatewithreader.readerid=#{readerid}
+    </select>
+    <insert id="applyABook" parameterType="com.example.demo.entity.BIAndRIWithBookState"  >
+        insert into bookstatewithreader(bookid,readerid,bookstate,borrowbooktime) values(#{bookid},#{readerid},#{bookstate},curdate())
+    </insert>
+
+    <insert id="readerRegister" parameterType="com.example.demo.entity.AddRederInfo"  >
+        insert into reader(readername,readersex,readertel,readerpass) values(#{readername},#{readersex},#{readerphone},#{readerpassword})
+    </insert>
+
+    <select id="getReaderId" parameterType="com.example.demo.entity.AddRederInfo" resultType="Integer">
+        select readerid  from reader where readertel=#{readerphone}
+    </select>
+
+    <select id="isRegister" parameterType="com.example.demo.entity.AddRederInfo" resultType="Integer" >
+        select readerid from reader where readertel=#{readerphone}
+    </select>
+
+    <select id="getBookInfoWithBorrowAR" parameterType="com.example.demo.entity.ReaderWithBookState"
+        resultType="com.example.demo.entity.BookInfoWithBorrowed"
+    >
+        select book.bookid,bookname,bookauthor,bookpublish,bookstate  from book,bookstatewithreader
+        where book.bookid=bookstatewithreader.bookid and readerid=#{readerid} and bookstate=#{bookstate}
+    </select>
+
+    <update id="applytoreturnbook"  parameterType="com.example.demo.entity.BIAndRIWithBookONState"  >
+        update bookstatewithreader set bookstate=#{newbookstate} where bookid=#{bookid} and readerid=#{readerid}
+        and bookstate=#{oldbookstate}
+    </update>
+
+</mapper>

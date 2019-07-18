@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.dao.readerDao">
+    <resultMap id="readerMap" type="com.example.demo.model.Reader">
+        <result property="readerId" column="readerid"/>
+        <result property="readerName" column="readername"/>
+        <result property="readerSex" column="readersex"/>
+        <result property="readerOcupation" column="readerocuupation"/>
+        <result property="readerTel" column="readertel"/>
+        <result property="readerAddress" column="readeraddress"/>
+        <result property="readerPassword" column="readerpass"/>
+    </resultMap>
+    <select id="selectReaders" resultMap="readerMap">
+        SELECT * FROM reader
+    </select>
+    <insert id="addReader" parameterType="com.example.demo.model.Reader">
+        insert into reader (
+        readerid, readername, readersex, readerocuupation, readertel,  readeraddress, readerpass)
+        values( #{readerId}, #{readerName}, #{readerSex}, #{readerOcupation}, #{readerTel},
+        #{readerAddress}, #{readerPassword})
+    </insert>
+    <select id="getReaderById" resultMap="readerMap"  parameterType="Integer" >
+        SELECT * FROM reader where readerid= #{readerId}
+    </select>
+    <update id="updateReader" parameterType="com.example.demo.model.Reader">
+        update reader set
+        readertel=#{readerTel},
+        readerpass=#{readerPassword}
+        where readerid= #{readerId}
+    </update>
+    <delete id="deleteReader" parameterType="com.example.demo.model.Reader">
+        delete from reader where readerid= #{readerId}
+    </delete>
+</mapper>

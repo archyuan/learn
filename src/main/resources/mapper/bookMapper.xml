@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.dao.bookDao">
+        <resultMap id="bookMap" type="com.example.demo.model.Book">
+        <result property="key" column="key"/>
+        <result property="bookId" column="bookid"/>
+        <result property="bookName" column="bookname"/>
+        <result property="bookAuthor" column="bookauthor"/>
+        <result property="bookPublisher" column="bookpublish"/>
+        <result property="bookInTime" column="putdate"/>
+        <result property="bookNumber" column="booknumber"/>
+        <result property="bookType" column="booktag"/>
+        <result property="bookIntro" column="bookcontent"/>
+    </resultMap>
+    <select id="selectBooks" resultMap="bookMap">
+        SELECT * FROM book
+    </select>
+    <insert id="addBook" parameterType="com.example.demo.model.Book">
+        insert into book (
+         bookid, bookname, bookauthor, bookpublish, putdate, booknumber, booktag, bookcontent)
+        values(  #{bookId}, #{bookName}, #{bookAuthor}, #{bookPublisher}, curdate(),
+        #{bookNumber}, #{bookType}, #{bookIntro})
+    </insert>
+    <select id="getBookById" resultMap="bookMap"  parameterType="String" >
+        SELECT * FROM book where bookid=#{bookId}
+    </select>
+    <update id="updateBook" parameterType="com.example.demo.model.Book">
+        update book set
+        booktag=#{bookType},
+        bookcontent=#{bookIntro}
+        where bookid=#{bookId}
+    </update>
+    <delete id="deleteBook" parameterType="com.example.demo.model.Book">
+        delete from book where bookid=#{bookId}
+    </delete>
+</mapper>

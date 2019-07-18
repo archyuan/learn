@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.bookmapper.BookMapper" >
+
+    <select id="searchBookByName"  parameterType="java.lang.String" resultType="com.example.demo.entity.Book" >
+      select * from book where bookname like concat('%',#{bookname},'%')
+    </select>
+
+    <select id="getBookStateByRIAndBI" parameterType="com.example.demo.entity.BIAndRI" resultType="Integer" >
+       select bookstate  from bookstatewithreader where bookid=#{bookid} and readerid=#{readerid}
+    </select>
+
+    <select id="getBookNumberByBookId" parameterType="java.lang.String" resultType="Integer" >
+        select booknumber from book where bookid=#{bookid}
+    </select>
+
+    <select id="getBookStatesByRIAndBI" parameterType="com.example.demo.entity.BIAndRI" resultType="Integer" >
+         select bookstate  from bookstatewithreader where bookid=#{bookid} and readerid=#{readerid}
+    </select>
+
+
+</mapper>

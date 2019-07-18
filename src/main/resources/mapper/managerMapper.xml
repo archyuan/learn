@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.dao.managerDao">
+    <resultMap id="managerMap" type="com.example.demo.model.Manager">
+        <result property="managerId" column="managerID"/>
+        <result property="managerName" column="managerName"/>
+        <result property="managerSex" column="managerSex"/>
+        <result property="managerAge" column="managerAge"/>
+        <result property="managerEmployeeTime" column="managerEmployeeTime"/>
+        <result property="managerType" column="managerType"/>
+        <result property="managerPassword" column="managerPassword"/>
+    </resultMap>
+    <select id="selectManagers" resultMap="managerMap">
+        SELECT * FROM manager
+    </select>
+    <insert id="addManager" parameterType="com.example.demo.model.Manager">
+        insert into manager (
+        managerId, managerName, managerSex, managerAge, managerEmployeeTime,  managerPassword)
+        values( #{managerId}, #{managerName}, #{managerSex}, #{managerAge}, curdate(),
+                 #{managerPassword})
+    </insert>
+    <select id="getManagerById" resultMap="managerMap"  parameterType="Integer" >
+        SELECT * FROM manager where managerID= #{managerId}
+    </select>
+    <update id="updateManager" parameterType="com.example.demo.model.Manager">
+        update manager set
+        managerAge=#{managerAge},
+        managerPassword=#{managerPassword}
+        where managerID=#{managerId}
+    </update>
+    <delete id="deleteManager" parameterType="com.example.demo.model.Manager">
+        delete from manager where managerID=#{managerId}
+    </delete>
+</mapper>
