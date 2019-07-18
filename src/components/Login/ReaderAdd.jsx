@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Form, Input, Select, Button,message } from 'antd';
 import SexOption from './SexOption'
 import axios from 'axios';
+const config = require('../../config/config')
 
 const { Option } = Select;
 
@@ -23,7 +24,7 @@ export default  class ReaderAdd extends Component {
       if (!err) {
         console.log('Received values of form: ', values);
        // alert(values);
-         axios.post('http://127.0.0.1:3005/reader/register',{
+         axios.post(`${config.Front_PATH}/reader/register`,{
            readername:values.readerName,
             readerpassword:values.readerPassword,
             readerphone:'+'+values.prefix+values.readerPhone,

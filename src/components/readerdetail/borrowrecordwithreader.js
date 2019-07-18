@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Table, Tag } from 'antd';
 import axios from 'axios';
+const config = require('../../config/config')
 export default class RecordBookWithReader extends Component {
 
 
@@ -15,7 +16,7 @@ export default class RecordBookWithReader extends Component {
 
         axios.defaults.withCredentials = true;
         //判断是否已登录
-        axios.get('http://127.0.0.1:3005/reader/readerislogin').then((data)=>{
+        axios.get(`${config.Front_PATH}/reader/readerislogin`).then((data)=>{
             if(data.data.b=='nologin'){
                 this.props.history.replace("/");
                 console.log("未登录");
@@ -28,7 +29,7 @@ export default class RecordBookWithReader extends Component {
         //请求借阅记录
         let message={};
         axios.defaults.withCredentials = true;
-        axios.post('http://127.0.0.1:3005/reader/booklendingrecords').then((value)=>{
+        axios.post(`${config.Front_PATH}/reader/booklendingrecords`).then((value)=>{
            
             this.setState({
                 dataSource:value.data

@@ -7,6 +7,7 @@ import RecordBookWithReader from './borrowrecordwithreader.js'
 import ApplytoReturnBook from './applytoreturnbookdetail.js'
 const { Header, Content, Footer, Sider } = Layout;
 const { Search } = Input;
+const config = require('../../config/config')
 
 
 export default class ReaderDetail extends Component {
@@ -22,7 +23,7 @@ export default class ReaderDetail extends Component {
 
   UNSAFE_componentWillMount() {
     axios.defaults.withCredentials = true;
-    axios.get('http://127.0.0.1:3005/reader/readerislogin').then((data) => {
+    axios.get(`${config.Front_PATH}/reader/readerislogin`).then((data) => {
       if (data.data.b.match("nologin")) {
         this.props.history.replace({ pathname: "/" });
       }
@@ -36,14 +37,14 @@ export default class ReaderDetail extends Component {
   
     axios.defaults.withCredentials = true;
     //判断是否已登录
-    axios.get('http://127.0.0.1:3005/reader/readerislogin').then((data)=>{
+    axios.get(`${config.Front_PATH}/reader/readerislogin`).then((data)=>{
         if(data.data.b=='nologin'){
             this.props.history.replace("/");
             console.log("未登录");
             window.location.reload();
         }
     });
-    axios.post('http://127.0.0.1:3005/book/search', {
+    axios.post(`${config.Front_PATH}/book/search`, {
       bookname: value
     }).then((data) => {
       this.setState({
@@ -65,7 +66,7 @@ export default class ReaderDetail extends Component {
   }
 
   logout = () => {
-    axios.post('http://127.0.0.1:3005/reader/logout').then((data) => {
+    axios.post(`${config.Front_PATH}/reader/logout`).then((data) => {
       if (data.data.logout == 'success') {
         window.location.reload();
       } else {

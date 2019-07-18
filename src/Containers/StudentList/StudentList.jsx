@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { } from 'antd';
 import Axios from 'axios';
-
+const config = require('../../config/config')
 class index extends Component {
 
 
@@ -12,7 +12,7 @@ class index extends Component {
         }
     }
    change=()=>{
-       Axios.get('http://127.0.0.1:3005/animal/listall').then((data)=>{
+       Axios.get(`${config.Front_PATH}/animal/listall`).then((data)=>{
            this.setState({
                stuinfo:data.data
            });

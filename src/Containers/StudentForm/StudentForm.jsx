@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Axios from 'axios';
-
+const config = require('../../config/config')
 
 class Index extends Component {
 
@@ -13,7 +13,7 @@ class Index extends Component {
     }
     change = ()=>{
         const _this = this; 
-        Axios.get('http://127.0.0.1:3005/animal/list').then((data)=>{
+        Axios.get(`${config.Back_PATH}/animal/list`).then((data)=>{
             _this.setState({
                 data:data.data
         

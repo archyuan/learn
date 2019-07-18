@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Descriptions } from 'antd';
 import { Button, message } from 'antd';
 import './bookdetail.css'
+const config = require('../../config/config')
 class BookInfo extends Component {
 
     constructor(props) {
@@ -31,7 +32,7 @@ class BookInfo extends Component {
         }
 
         axios.defaults.withCredentials = true;
-        axios.get('http://127.0.0.1:3005/reader/readerislogin').then((data) => {
+        axios.get(`${config.Front_PATH}/reader/readerislogin`).then((data) => {
             if (data.data.b.match("nologin")) {
                 this.props.history.replace({ pathname: "/" });
                 window.location.reload();
@@ -59,7 +60,7 @@ class BookInfo extends Component {
         if (this.state.bookdetail != undefined) {
             //this.state.bookdetail.bookid
             axios.defaults.withCredentials = true;
-            axios.post('http://127.0.0.1:3005/reader/applyabook', {
+            axios.post(`${config.Front_PATH}/reader/applyabook`, {
                 bookid: this.state.bookdetail.bookid
             }).then((data) => {
                 console.log(data.data);

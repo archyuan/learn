@@ -1,0 +1,24 @@
+@import '~antd/dist/antd.css';
+
+.pageStyle{
+    margin: 10px 10px 10px 10px;
+    text-align: left;
+    height: 500px;
+    font-size: 60px;
+}
+.headStyle{
+    margin-left: 10%;
+    margin-top: 100px;
+    margin-bottom: 0px;
+    text-align: left;
+    font-size: 72px;
+    color:rgb(14, 12, 12);
+}
+.textStyle{
+    margin-left: 20%;
+    margin-top: 5px;
+    margin-bottom: 0px;
+    text-align: left;
+    font-size: 48px;
+    color:dimgray;
+}

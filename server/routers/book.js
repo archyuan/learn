@@ -1,13 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const axios = require('axios');
+const config = require('../../config/config')
 
 
 router.post('/search', (req, res) => {
 
    
 
-    axios.post('http://127.0.0.1:8095/book/search', {
+    axios.post(`${config.Back_PATH}/book/search`, {
         bookname: req.body.bookname
        
     }).then(({ data }) => {
@@ -19,7 +20,7 @@ router.post('/search', (req, res) => {
 
 router.post('/bookisable',(requets,response)=>{
     if(requets.session.userid){
-         axios.post('http://127.0.0.1:8095/book/isable',{
+         axios.post(`${config.Back_PATH}/book/isable`,{
              userid:requets.session.userid,
              bookid:requets.body.bookid
          }).then((data)=>{

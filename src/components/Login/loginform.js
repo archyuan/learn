@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Form, Icon, Input, Button, message } from 'antd';
 import './Login.scss'
 import axios from 'axios';
+const config = require('../../config/config')
 
 
 export default class NormalLoginForm extends Component {
@@ -26,7 +27,7 @@ export default class NormalLoginForm extends Component {
         console.log(values.username);
         console.log(values.password);
         axios.defaults.withCredentials = true;
-        axios.post('http://127.0.0.1:3005/reader/login', {
+        axios.post(`${config.Front_PATH}/reader/login`, {
           userid: values.username,
           password: values.password
         }).then((data) => {

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Table } from 'antd';
 import axios from 'axios';
+const config = require('../../config/config')
 
 
 export default class BookListDetail extends Component {
@@ -17,7 +18,7 @@ export default class BookListDetail extends Component {
         let enable = false;
         console.log(value);
         axios.defaults.withCredentials = true;
-        axios.post('http://127.0.0.1:3005/book/bookisable', {
+        axios.post(`${config.Front_PATH}/book/bookisable`, {
             bookid: value.bookid
         }).then((data) => {
             ///下一个按钮的可用状态信息

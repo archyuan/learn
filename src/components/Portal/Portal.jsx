@@ -4,11 +4,12 @@ import StudentForm from '../../Containers/StudentForm/StudentForm';
 import StudentList from '../../Containers/StudentList/StudentList';
 import Style from './index.module.scss'
 import axios from 'axios';
+const config = require('../../config/config')
 export default class Portal extends Component {
 
     UNSAFE_componentWillMount(){
         axios.defaults.withCredentials=true;
-        axios.get('http://127.0.0.1:3005/reader/readerislogin').then((data)=>{
+        axios.get(`${config.Front_PATH}/reader/readerislogin`).then((data)=>{
             if(data.data.b.match("nologin")){
                     this.props.history.replace({pathname:"/"});
             }

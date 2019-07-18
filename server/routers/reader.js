@@ -1,12 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const axios = require('axios');
+const config = require('../../config/config')
 
 
 
 
 router.post('/applytoreturn',(request,response)=>{
-      axios.post('http://127.0.0.1:8095/reader/applytoreturnbook',{
+      axios.post(`${config.Back_PATH}/reader/applytoreturnboo`,{
           bookid:request.body.bookid,
           readerid:request.session.userid
       }).then((data)=>{
@@ -17,7 +18,7 @@ router.post('/applytoreturn',(request,response)=>{
 router.post('/getbookwithborrowed',(request,response)=>{
     if(request.session.userid){
         ////do some thing
-       axios.post('http://127.0.0.1:8095/reader/getbookinfobr',{
+       axios.post(`${config.Back_PATH}/reader/getbookinfobr`,{
            userid:request.session.userid
        }).then((data)=>{
           
@@ -29,7 +30,7 @@ router.post('/getbookwithborrowed',(request,response)=>{
 
 router.post('/register',(request,response)=>{
 
-      axios.post('http://127.0.0.1:8095/reader/register',request.body).then((data)=>{
+      axios.post(`${config.Back_PATH}/reader/register`,request.body).then((data)=>{
                 response.send(data.data);              
       });
   
@@ -41,7 +42,7 @@ router.post('/login', (req, res) => {
 
     let userId = req.body.userid;
 
-    axios.post('http://127.0.0.1:8095/reader/login', {
+    axios.post(`${config.Back_PATH}/reader/login`, {
         userid: req.body.userid,
         password: req.body.password
     }).then(({ data }) => {
@@ -90,7 +91,7 @@ router.post('/booklendingrecords', (request, response) => {
     if (request.session.userid) {
         userId = request.session.userid;
     }
-    axios.post('http://127.0.0.1:8095/reader/readercord', {
+    axios.post(`${config.Back_PATH}/reader/readercord`, {
         userid: userId
     }).then((data) => {
         // response.send(data.data);
@@ -112,7 +113,7 @@ router.post('/applyabook', (request, response) => {
 
     }
     userId = request.session.userid;
-    axios.post('http://127.0.0.1:8095/reader/applyabook', {
+    axios.post(`${config.Back_PATH}/reader/applyabook`, {
         bookid: request.body.bookid,
         readerid: userId
     }).then((data) => {

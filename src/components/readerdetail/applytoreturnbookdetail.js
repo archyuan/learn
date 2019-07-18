@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Table, Button,message } from 'antd';
 import axios from 'axios';
+const config = require('../../config/config')
 
 export default class ApplytoReturnBook extends Component {
 
@@ -14,7 +15,7 @@ export default class ApplytoReturnBook extends Component {
     componentDidMount() {
         axios.defaults.withCredentials = true;
         //判断是否已登录
-        axios.get('http://127.0.0.1:3005/reader/readerislogin').then((data)=>{
+        axios.get(`${config.Front_PATH}/reader/readerislogin`).then((data)=>{
             if(data.data.b=='nologin'){
                 this.props.history.replace("/");
                 console.log("未登录");
@@ -52,7 +53,7 @@ export default class ApplytoReturnBook extends Component {
     }
     
     getList=()=>{
-        axios.post('http://127.0.0.1:3005/reader/getbookwithborrowed').then((data)=>{
+        axios.post(`${config.Front_PATH}/reader/getbookwithborrowed`).then((data)=>{
             console.log(data.data);
             console.log("进入");
             console.log("componentWillUpdate");
@@ -67,7 +68,7 @@ export default class ApplytoReturnBook extends Component {
         console.log(record, Index);
         axios.defaults.withCredentials = true;
         //判断是否已登录
-        axios.get('http://127.0.0.1:3005/reader/readerislogin').then((data)=>{
+        axios.get(`${config.Front_PATH}/reader/readerislogin`).then((data)=>{
             if(data.data.b=='nologin'){
                 this.props.history.replace("/");
                 console.log("未登录");
@@ -76,7 +77,7 @@ export default class ApplytoReturnBook extends Component {
         });
 
 
-        axios.post('http://127.0.0.1:3005/reader/applytoreturn',{
+        axios.post(`${config.Front_PATH}/reader/applytoreturn`,{
             bookid:record.bookid
         }).then((data)=>{
             ///处理一下

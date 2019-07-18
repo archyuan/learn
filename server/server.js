@@ -13,6 +13,14 @@ const demoAnimallAll = require('./routers/animallAllRouter');
 const readerRouter = require('./routers/reader');
 const bookRouter = require('./routers/book');
 
+// fromEG
+const demoRouter1 = require('./routers/managerRouter');
+const demoRouter2 = require('./routers/readerRouter');
+const demoRouter3 = require('./routers/bookRouter');
+const demoRouter4 = require('./routers/borrowRouter');
+
+
+// fromEG
 // Configure log4j
 log4js.configure({
     appenders: {
@@ -33,7 +41,7 @@ log4js.configure({
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "http://localhost:3000");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    res.header("Access-Control-Allow-Credentials", true)
+    res.header("Access-Control-Allow-Credentials", true);
     next();
 });
 
@@ -73,6 +81,17 @@ app.use('/ani',demoAnimallAll);
 app.use('/reader',readerRouter);
 app.use('/book',bookRouter);
 // Send resource
+
+
+
+//from EG
+
+app.use('/manager', demoRouter1);  // Express Middleware
+app.use('/reader', demoRouter2);  // Express Middleware
+app.use('/book', demoRouter3);
+app.use('/borrow', demoRouter4);
+
+//from EG
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '/../build', 'index.html'));
 });
