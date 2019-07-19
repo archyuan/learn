@@ -86,11 +86,11 @@ class ReaderMag extends Component {
         dataIndex: 'readerSex',
         key: 'readerSex',
       },
-      {
-        title: '类别',
-        dataIndex: 'readerOcupation',
-        key: 'readerOcupation',
-      },
+      // {
+      //   title: '类别',
+      //   dataIndex: 'readerOcupation',
+      //   key: 'readerOcupation',
+      // },
       {
         title: '联系方式',
         dataIndex: 'readerTel',

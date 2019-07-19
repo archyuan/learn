@@ -22,6 +22,12 @@ router.get('/getreturnrequestlist', (request, response) => {
     })
 });
 
+router.get('/getstatistic', (request, response) => {
+    axios.get(`${config.Back_PATH}/getStatistic`).then((data) => {
+        response.send(data.data);
+    })
+});
+
 router.post('/agreeborrow', (request, response) => {
     const params=request.body;
     axios.post(`${config.Back_PATH}/agreeBorrow`,params).then(() => {

@@ -144,7 +144,7 @@ class ManagerUpdate extends Component {
         </Form.Item>
 
         <Form.Item label="入职时间">
-          {getFieldDecorator('managerEmployeeTime', {initialValue:`${this.state.managerInfo.managerAge}`})(<Input style={{ width: 200 }} disabled/>)}
+          {getFieldDecorator('managerEmployeeTime', {initialValue:`${this.state.managerInfo.managerEmployeeTime}`})(<Input style={{ width: 200 }} disabled/>)}
         </Form.Item>
 
         <Form.Item {...tailFormItemLayout}>

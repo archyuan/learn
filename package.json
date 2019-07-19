@@ -61,6 +61,8 @@
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
     "cookie-parser": "^1.4.4",
+    "echarts": "^4.2.1",
+    "echarts-for-react": "^2.0.15-beta.0",
     "express": "^4.16.4",
     "express-session": "^1.16.2",
     "log4js": "^4.0.2",

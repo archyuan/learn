@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import './Borrow.css';
 import { Table } from 'antd';
-import { Button } from 'antd';
+import { Button, message } from 'antd';
 const axios = require('axios');
 const config = require('../../config/config.js')
-
+const success = () => {
+  message
+  .success('同意申请成功',1)
+};
 
 class BorrowUpd extends Component {
   state={
@@ -34,7 +37,7 @@ class BorrowUpd extends Component {
     console.log(value)
     axios.post(`${config.Front_PATH}/borrow/agreereturn`,value).then(
            ()=>{
-             alert('同意申请成功');
+             success();
            }
          )   
 

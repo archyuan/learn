@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
 import './Borrow.css';
-import { Table, Divider } from 'antd';
+import { Table, Divider, message} from 'antd';
 import { Button } from 'antd';
 const axios = require('axios');
 const config = require('../../config/config.js')
-
-
+const success = () => {
+  message
+  .success('同意申请成功',1)
+};
+const successrefuse = () => {
+  message
+  .success('拒绝申请成功',1)
+};
 
 
 
@@ -37,7 +43,7 @@ class BorrowAdd extends Component {
     console.log(value)
     axios.post(`${config.Front_PATH}/borrow/agreeborrow`,value).then(
            ()=>{
-             alert('同意申请成功');
+             success();
            }
          )   
 
@@ -47,7 +53,7 @@ class BorrowAdd extends Component {
     axios.defaults.withCredentials = true;
     axios.post(`${config.Front_PATH}/borrow/refuseborrow`,value).then(
            ()=>{
-             alert('拒绝申请成功');
+             successrefuse();
            }
          )   
 
