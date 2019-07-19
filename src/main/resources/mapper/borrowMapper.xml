@@ -11,7 +11,14 @@
         <result property="returnTime" column="returnbooktime"/>
         <result property="borrowStation" column="bookstate"/>
 
+
     </resultMap>
+
+<resultMap id="statistic" type="com.example.demo.model.Statistic">
+    <result property="number" column="count" />
+    <result  property="bookType"  column="booktag"  />
+</resultMap>
+
     <select id="selectBorrows" resultMap="borrowMap">
         SELECT a.borrowid, a.bookid, b.bookname, a.readerid, a.borrowbooktime, a.returnbooktime, a.bookstate
         FROM bookstatewithreader a, book b
@@ -26,6 +33,12 @@
         SELECT a.borrowid, a.bookid, b.bookname, a.readerid, a.borrowbooktime, a.returnbooktime, a.bookstate
         FROM bookstatewithreader a, book b
         WHERE a.bookid=b.bookid and a.bookstate=4
+    </select>
+    <select id="selectStatistic" resultMap="statistic">
+        SELECT count(a.borrowid) count , b.booktag
+        FROM bookstatewithreader a, book b
+        WHERE a.bookid=b.bookid and a.bookstate &lt;&gt; 3
+        Group by b.booktag
     </select>
     <update id="updateAgreeBorrow" parameterType="com.example.demo.model.Borrow">
         update bookstatewithreader set

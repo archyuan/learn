@@ -3,6 +3,7 @@ package com.example.demo.controller;
 
 import com.example.demo.model.Borrow;
 import com.example.demo.dao.borrowDao;
+import com.example.demo.model.Statistic;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
@@ -35,6 +36,12 @@ public class borrowController {
     @ResponseBody
     public List<Borrow> getReturnRequest() {
         return borrowDAO.selectReturnRequest();
+    }
+
+    @GetMapping("/getStatistic")
+    @ResponseBody
+    public List<Statistic> getStatistic() {
+        return borrowDAO.selectStatistic();
     }
 
     @PostMapping("/agreeBorrow")

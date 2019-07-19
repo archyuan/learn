@@ -1,6 +1,7 @@
 package com.example.demo.dao;
 
 import com.example.demo.model.Borrow;
+import com.example.demo.model.Statistic;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -10,6 +11,7 @@ public interface borrowDao {
     List<Borrow> selectBorrows();
     List<Borrow> selectBorrowRequest();
     List<Borrow> selectReturnRequest();
+    List<Statistic> selectStatistic();
     Integer updateAgreeBorrow(Borrow borrow);
     Integer updateRefuseBorrow(Borrow borrow);
     Integer updateAgreeReturn(Borrow borrow);
